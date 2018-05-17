@@ -1,0 +1,79 @@
+﻿@using DoAnQLSV.Models;
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html  lang="en">
+<head>
+    <title>Sinh viên ĐĂNG NHẬP</title>
+    <!-- Meta tag Keywords -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="Glassy Login Form Responsive Widget,Login form widgets, Sign up Web forms , Login signup Responsive web form,Flat Pricing table,Flat Drop downs,Registration Forms,News letter Forms,Elements" />
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <!-- Meta tag Keywords -->
+    <!-- css files -->
+    <link rel="stylesheet" href="~/Content/font-awesome.css"> <!-- Font-Awesome-Icons-CSS -->
+    <link rel="stylesheet" href="~/Content/style1.css" type="text/css" media="all" /> <!-- Style-CSS --> 
+    <!-- //css files -->
+    <!-- web-fonts -->
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700" rel="stylesheet">
+</head>
+<body>
+
+    <div class="header-w3l">
+        <h1>ĐĂNG NHẬP TRANG SINH VIÊN</h1>
+    </div>
+    <h4 style="color: red; text-align: center">@ViewBag.Thongbao</h4>
+    @using (Html.BeginForm())
+    {
+
+        @Html.ValidationSummary(true)
+        <div class="main-w3layouts-agileinfo">
+        
+            <div class="wthree-form">
+                <h2>ITU</h2>
+							
+                <div class="form-sub-w3">
+                    <input type="text" name="Username" placeholder="Mã số sinh viên... " required="" />
+                    <div class="icon-w3">
+                        <i class="fa fa-user" aria-hidden="true"></i>
+                    </div>
+                </div>
+                @ViewData["Loi1"]
+                <div class="form-sub-w3">
+                    <input type="password" name="Password" placeholder="Mật khẩu..." required="" />
+                    <div class="icon-w3">
+                        <i class="fa fa-unlock-alt" aria-hidden="true"></i>
+                    </div>
+                </div>
+                @ViewData["Loi2"]
+                <label class="anim">
+                    <input type="checkbox" class="checkbox">
+                    <span>Remember Me</span> 
+									
+                </label> 
+                <div class="clear"></div>
+                <div class="submit-agileits">
+                    <input type="submit" value="Đăng nhập">
+                </div>
+
+            </div>
+            <!--//form-ends-here-->
+
+        </div>
+
+
+    }
+    <div class="footer">
+        <p>&copy; 2018 Phan Hồ Trọng Hiếu & Dương Quốc Hào <a href="#">Facebook</a></p>
+    </div>
+</body>
+
+
+
+</html>
