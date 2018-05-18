@@ -104,5 +104,51 @@ namespace DoAnQLSV.Controllers
             var sv = from s in data.SINHVIENs where s.MaSV == tk.TenDN select s;
             return View(sv.Single());
         }
+        [HttpGet]
+        //cap nhat thong tin nguoi dung
+        public ActionResult CapNhatThongTinSV(string MaSV)
+        {
+
+            //lấy đối tượng là mã sinh viên
+            SINHVIEN sv = data.SINHVIENs.SingleOrDefault(n => n.MaSV == MaSV);
+            if (sv == null)
+            {
+                Response.StatusCode = 404;
+                return null;
+            }
+            return View(sv);
+
+        }
+        [HttpPost]
+        [ValidateInput(false)]
+        public ActionResult CapNhatThongTinSV(SINHVIEN sv)
+        {
+            SINHVIEN sinhvien = data.SINHVIENs.SingleOrDefault(n => n.MaSV == sv.MaSV);
+            sinhvien.GioiTinh = sv.GioiTinh;
+            sinhvien.NgaySinh = sv.NgaySinh;
+            sinhvien.QueQuan = sv.QueQuan;
+            sinhvien.SDT = sv.SDT;
+            sinhvien.NoiThuongTru = sv.NoiThuongTru;
+            sinhvien.CMND = sv.CMND;
+
+
+
+            if (ModelState.IsValid)
+            {
+                //SINHVIEN sinhvien = data.SINHVIENs.SingleOrDefault(n => n.MaSV == sv.MaSV);
+                //sinhvien.GioiTinh = sv.GioiTinh;
+                //sinhvien.NgaySinh = sv.NgaySinh;
+                //sinhvien.QueQuan = sv.QueQuan;
+                //sinhvien.SDT = sv.SDT;
+                //sinhvien.NoiThuongTru = sv.NoiThuongTru;
+                //sinhvien.CMND = sv.CMND;
+                UpdateModel(sv);
+                data.SubmitChanges();
+                return RedirectToAction("Thongtincanhan");
+            }
+            return View(sv);
+
+
+        }
     }
 }
