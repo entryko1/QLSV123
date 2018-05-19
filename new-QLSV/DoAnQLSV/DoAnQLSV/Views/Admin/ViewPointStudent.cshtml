@@ -1,0 +1,84 @@
+﻿@using DoAnQLSV.Models
+@using PagedList.Mvc
+@model PagedList.IPagedList<DIEM>
+
+@{
+    ViewBag.Title = "EditPointStudent";
+    Layout = "~/Views/Shared/_LayoutAdminStudent.cshtml";
+}
+
+<h2 style="color: red"><strong>SỬA ĐIỂM SINH VIÊN</strong></h2>
+
+<p>
+    @using (Html.BeginForm())
+    {  
+        <p>
+            MSSV:@Html.TextBox("timkiem")
+      
+            <input type="submit" value="Tìm kiếm" />
+       
+        </p>
+    }
+
+</p>
+<table class="table">
+    <tr>
+        <th>
+           MSSV
+        </th>
+        <th>
+           Mã Môn Học
+        </th>
+        <th>
+           Học Kỳ
+        </th>
+        <th>
+           Điểm L1
+        </th>
+        <th>
+           Điểm L2
+        </th>
+        <th>
+           Điểm trung bình
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.MaSV)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MaMH)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HocKy)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DiemLan1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DiemLan2)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DiemTB)
+        </td>
+        <td>
+            @Html.ActionLink("Chỉnh sửa", "EditPoint", new { id=item.Stt }) |
+         
+            @Html.ActionLink("Xóa", "DeletePoint", new { id=item.Stt })
+        </td>
+    </tr>
+}
+
+</table>
+Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)/@Model.PageCount;
+<div class="MenuTrang">
+    @Html.PagedListPager(Model, page => Url.Action("ViewPointStudent", new { page = page }))
+</div>
+<style>
+    .MenuTrang li {
+        display: inline;
+    }
+</style>
