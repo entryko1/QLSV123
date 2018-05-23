@@ -45,10 +45,13 @@
                         <h2><a href="index.html">Kết nối - Chia sẽ - Đam mê</a></h2>
                     </div>
                     <div class="search">
-                        <form>
-                            <input type="text" value="">
-                            <input type="submit" value="">
-                        </form>
+                        @using (Html.BeginForm("TiemkiemSV", "TimKiem"))
+                        {
+
+                                <input type="text" name="txtTimkiem" placeholder="Nhập Mã Số Hoặc Tên Cần Tìm">
+                                <input type="submit" value="">
+                            
+                        }
                     </div>
                     <div class="clear"></div> 
                 </div>
