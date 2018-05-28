@@ -1,11 +1,20 @@
+<<<<<<< HEAD:DoAnQLSV/DoAnQLSV/Views/QLSV/Index.cshtml
+﻿
+
+@model IEnumerable<DoAnQLSV.Models.BAIVIET>
+
+=======
 ﻿@using DoAnQLSV.Models
 @using PagedList.Mvc
 @model PagedList.IPagedList<DIEM>
+>>>>>>> 7978023df9120ecfb7a0d6d54f1cfd8d22c9f2d5:new-QLSV/DoAnQLSV/DoAnQLSV/Views/TimKiem/TiemkiemSV.cshtml
 
 @{
     ViewBag.Title = "TiemkiemSV";
     Layout = "~/Views/Shared/_LayoutIndex.cshtml";
 }
+
+
 <head>
     <title>IT-University</title>
     <link href="~/Content/style.css" rel="stylesheet" type="text/css" media="all" />
@@ -42,6 +51,42 @@
         <div class="wrap">
             <div class="main-top">
                 <div class="main">
+<<<<<<< HEAD:DoAnQLSV/DoAnQLSV/Views/QLSV/Index.cshtml
+                    <div class="banner">
+                        <img src="~/images/banner.png" alt="" />
+                    </div>
+                    <div class="section-top">
+                        <div class="col_1_of_3 span_1_of_3">
+                            <div class="title-img">
+                                <div class="title"><img src="~/images/book1.png" alt="" /></div>
+                                <div class="title-desc"><p>Tin tức</p></div>
+                                <div class="clear"></div>
+                            </div>
+
+                            <a href="@Url.Action("ChitietBaiviet", "QLSV", new { id = ViewBag.IdBv })"><p class="desc"><strong>@ViewBag.TieuDe</strong></p></a>
+                            <p class="desc1">@ViewBag.TomTat</p>
+                            <a href="@Url.Action("TinTuc", "QLSV", new { id = 3})" class="btn btn-primary"><span>Xem thêm</span><img src="~/images/more_arrow.png" alt=""></a>
+                        </div>
+                        <div class="col_1_of_3 span_1_of_3">
+                            <div class="title-img1">
+                                <div class="title"><img src="~/images/cup.png" alt="" /></div>
+                                <div class="title-desc"><p>Thành tựu</p></div>
+                                <div class="clear"></div>
+                            </div>
+                            <a href="@Url.Action("ChitietBaiviet", "QLSV", new { id = ViewBag.IdBv2 })"><p class="desc"><strong>@ViewBag.TieuDe2</strong></p></a>
+                            <p class="desc1"> @ViewBag.TomTat2</p>
+                            <a href="@Url.Action("ThanhTuu", "QLSV", new { id = 4})" class="btn btn-primary"><span>Xem thêm</span><img src="~/images/more_arrow.png" alt=""></a>
+                        </div>
+                        <div class="col_1_of_3 span_1_of_3">
+                            <div class="title-img2">
+                                <div class="title"><img src="~/images/books.png" alt="" /></div>
+                                <div class="title-desc"><p>Đội ngũ liên kết</p></div>
+                                <div class="clear"></div>
+                            </div>
+                            <a href="@Url.Action("ChitietBaiviet", "QLSV", new { id = ViewBag.IdBv3 })"><p class="desc"><strong>@ViewBag.TieuDe3</strong></p></a>
+                            <p class="desc1">@ViewBag.TomTat3</p>
+                            <a href="@Url.Action("DoiNguLienKet", "QLSV", new { id = 5})" class="btn btn-primary"><span>Xem thêm</span><img src="~/images/more_arrow.png" alt=""></a>
+=======
                     <div class="banner" style="clear:both">
                         <div id="slider" class="nivoSlider">
                             <img src="~/HinhSanPham/banner1.png" width="1141" height="427"/>
@@ -112,7 +157,12 @@
                         </table>
                         Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)/@Model.PageCount
                         <div class="MenuTrang">
+<<<<<<< HEAD:new-QLSV/DoAnQLSV/DoAnQLSV/Views/LoginUser/TimkiemSV.cshtml
                             @Html.PagedListPager(Model, page => Url.Action("TimkiemSV", new { page = page,@sTukhoa = ViewBag.TuKhoa }))
+=======
+                            @Html.PagedListPager(Model, page => Url.Action("TimkiemSV", new { page = page }))
+>>>>>>> 7978023df9120ecfb7a0d6d54f1cfd8d22c9f2d5:new-QLSV/DoAnQLSV/DoAnQLSV/Views/TimKiem/TiemkiemSV.cshtml
+>>>>>>> 009b1fd7c123ebaf3f6444011dfb6b8c41705efb:new-QLSV/DoAnQLSV/DoAnQLSV/Views/TimKiem/TiemkiemSV.cshtml
                         </div>
                         <style>
                             .MenuTrang li {
@@ -138,61 +188,38 @@
                     <div class="col_1_of_3 span_1_of_3">
                         <h3>Hỗ trợ việc học</h3>
                         <ul class="dishes_list">
-                            <li><a href="#">Consectetur adipisicing elit</a></li>
-                            <li><a href="#">Sed do eiusmod tempor incididunt</a></li>
-                            <li><a href="#">Labore et dolore magna aliqua.</a></li>
-                            <li><a href="#">Sed do eiusmod tempor Dolore</a></li>
-                            <li><a href="#">Abore et dolore magna Dolore elit</a></li>
-                            <li><a href="#">Incididunt ut labore et dolore</a></li>
-                            <li><a href="#">Incididunt ut labore et dolore</a></li>
-                            <li class="last"><a href="#">Adipisicing elit, sed do eiusmod</a></li>
+                            @foreach (var item in Model.Where(model => model.Id == 6).Take(7))
+                            {
+
+                                <li><a href="@Url.Action("ChitietBaiviet", "QLSV", new { id = item.IdBV})">@item.TieuDe</a></li>
+
+                            }
+
+
                             <div class="clear"> </div>
                         </ul>
-                        <a href="#" class="btn btn-primary1"><span>Xem thêm</span><img src="~/images/more_arrow.png" alt=""></a>
+
+                        <a href="@Url.Action("Hotroviechoc","QLSV", new {id = 6})" class="btn btn-primary1"><span>Xem thêm</span><img src="~/images/more_arrow.png" alt=""></a>
                     </div>
                     <div class="col_1_of_3 span_1_of_3">
                         <h3>Tin nổi bật</h3>
-                        <div class="latest-news-grid">
-                            <div class="latest-news-pic">
-                                <img src="~/images/pic.jpg" title="imag-name">
+                        @foreach (var item in Model.Where(model => model.Id == 3).OrderBy(n => n.NgayViet).Take(4))
+                        {
+                            <div class="latest-news-grid">
+                                <div class="latest-news-pic">
+                                    <a href="@Url.Action("ChitietBaiviet", "QLSV", new { id = item.IdBV})"><img src="@Url.Content("~/images/imagesNews/" + item.HinhAnh)" title="imag-name"></a>
+                                    
+                                </div>
+                                <div class="latest-news-info">
+                                    <a href="@Url.Action("ChitietBaiviet", "QLSV", new { id = item.IdBV})">@String.Format("{0:dd/MM/yyyy}", item.NgayViet)</a>
+                                    <a href="@Url.Action("ChitietBaiviet", "QLSV", new { id = item.IdBV})"><p class="desc1">@item.TieuDe</p></a>
+                                    
+                                </div>
+                                <div class="clear"> </div>
                             </div>
-                            <div class="latest-news-info">
-                                <a href="#">Jan 21.01.2013</a>
-                                <p class="desc1">Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod tempor</p>
-                            </div>
-                            <div class="clear"> </div>
-                        </div>
-                        <div class="latest-news-grid">
-                            <div class="latest-news-pic">
-                                <img src="~/images/pic1.jpg" title="imag-name">
-                            </div>
-                            <div class="latest-news-info">
-                                <a href="#">Jan 21.01.2013</a>
-                                <p class="desc1">Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod tempor</p>
-                            </div>
-                            <div class="clear"> </div>
-                        </div>
-                        <div class="latest-news-grid">
-                            <div class="latest-news-pic">
-                                <img src="~/images/pic2.jpg" title="imag-name">
-                            </div>
-                            <div class="latest-news-info">
-                                <a href="#">Jan 21.01.2013</a>
-                                <p class="desc1">Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod tempor</p>
-                            </div>
-                            <div class="clear"> </div>
-                        </div>
-                        <div class="latest-news-grid">
-                            <div class="latest-news-pic">
-                                <img src="~/images/pic3.jpg" title="imag-name">
-                            </div>
-                            <div class="latest-news-info">
-                                <a href="#">Jan 21.01.2013</a>
-                                <p class="desc1">Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod tempor</p>
-                            </div>
-                            <div class="clear"> </div>
-                        </div>
-                        <a href="#" class="btn btn-primary2"><span>Xem thêm</span><img src="~/images/more_arrow.png" alt=""></a>
+                        }
+
+                       
                     </div>
                     <div class="clear"></div>
                 </div>
@@ -219,5 +246,8 @@
     </script>
 </body>
 
+<<<<<<< HEAD:DoAnQLSV/DoAnQLSV/Views/QLSV/Index.cshtml
+=======
 
 
+>>>>>>> 7978023df9120ecfb7a0d6d54f1cfd8d22c9f2d5:new-QLSV/DoAnQLSV/DoAnQLSV/Views/TimKiem/TiemkiemSV.cshtml

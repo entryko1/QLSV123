@@ -1,0 +1,68 @@
+﻿
+@using DoAnQLSV.Models
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <title>IT-University</title>
+    <link href="~/Content/style.css" rel="stylesheet" type="text/css" media="all" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href='//fonts.googleapis.com/css?family=Montserrat+Alternates' rel='stylesheet' type='text/css'>
+    <script type="text/javascript">
+        function fun() {
+            document.getElementById("demo").style.background = "#fa9915";
+        }
+    </script>
+</head>
+<body>
+
+
+<div class="header-bg">
+    <div class="wrap"> 
+        <div class="total-box">
+            <div class="total">
+                <div class="header_top">
+                    <div class="menu">
+                        <ul>
+                            <li id ="demo"><a href="@Url.Action("Index", "QLSV")"  onclick="fun()">Trang chủ</a></li>
+						    	
+                            <li id ="demo"><a href="@Url.Action("Doingugiangvien", "QLSV", new { id = 1})"  onclick="fun()">Đội ngũ giảng viên</a></li>
+                            <li id ="demo"><a href="@Url.Action("Chuongtrinhhoc", "QLSV", new { id = 2})"  onclick="fun()">Chương trình học</a></li>
+                            <li id ="demo"><a href="@Url.Action("Diachi","QLSV")"  onclick="fun()">Địa chỉ</a></li>
+                          
+                            <div class="clear"></div>
+                        </ul>
+                    </div>
+                    <ul class="follow_icon">
+                        <li class="right"><a href="@Url.Action("Login","LoginUser")" >Đăng nhập</a></li>
+                    </ul>
+                    <div class="clear"></div>
+                </div>
+                <div class="header-bottom">
+                    <div class="logo">
+                        <h1><a href="index.html">IT-University</a></h1>
+                        <h2><a href="index.html">Kết nối - Chia sẽ - Đam mê</a></h2>
+                    </div>
+                    <div class="search">
+                        <form>
+                            <input type="text" value="">
+                            <input type="submit" value="">
+                        </form>
+                    </div>
+                    <div class="clear"></div> 
+                </div>
+            </div>	
+        </div>
+    </div>
+</div>
+<div>
+    @RenderBody()
+</div>
+
+
+</body>
+</html>

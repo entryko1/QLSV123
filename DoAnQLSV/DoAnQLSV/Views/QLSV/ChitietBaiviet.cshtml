@@ -1,0 +1,52 @@
+﻿@model DoAnQLSV.Models.BAIVIET
+@using DoAnQLSV.Models
+@{
+    ViewBag.Title = "ChitietBaiviet";
+    Layout = "~/Views/Shared/_LayoutIndex.cshtml";
+}
+
+<head>
+    <title>@Model.DANHMUC.TenDM</title>
+    <link href="~/Content/style.css" rel="stylesheet" type="text/css" media="all" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href='//fonts.googleapis.com/css?family=Montserrat+Alternates' rel='stylesheet' type='text/css'>
+    <!------ Light Box ------>
+    <script src="~/Scripts/jquery.min.js"></script>
+    <link rel="stylesheet" href="~/Content/swipebox.css">
+    <script src="~/Scripts/ios-orientationchange-fix.js"></script>
+    <script src="~/Scripts/jquery.swipebox.min.js"></script>
+    <script type="text/javascript">
+        jQuery(function($) {
+            $(".swipebox").swipebox();
+        });
+    </script>
+    <!------ Eng Light Box ------>
+</head>
+
+<body>
+    <div class="banner-box">
+        <div class="wrap">
+            <div class="main-top">
+                <div class="main">
+                    <div class="heading3" >
+                        
+                        <h3>@Model.DANHMUC.TenDM</h3>
+                        
+                        <p style="color: #FA8D03; font-size: 25px; font-weight: bold">@Html.DisplayFor(m => m.TieuDe)</p>
+                        <div style="color:gray"><i class="fa fa-calendar"></i>@String.Format("{0:dd/MM/yyyy}", Model.NgayViet)</div>
+                         @Html.Raw(Model.ChiTiet)
+                        <p align="right" style="font-style: oblique">Nguồn: @Html.DisplayFor(m => m.Nguon)</p>
+                    </div>
+
+                    <div class="wrap">
+                        <div class="copy-right">
+                            <p>Phan Hồ Trọng Hiếu & Dương Quốc Hào | <a href="fb.com/entryko1"> Facebook</a></p>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+</body>
+
