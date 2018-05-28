@@ -1,0 +1,73 @@
+﻿@model DoAnQLSV.Models.DIEM
+
+@{
+    ViewBag.Title = "DeletePoint";
+    Layout = "~/Views/Shared/_LayoutAdminStudent.cshtml";
+}
+
+<h2>DeletePoint</h2>
+
+<h3 style="color:red">Bạn muốn xóa bảng điểm này ?</h3>
+<div>
+
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+           MSSV:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MaSV)
+        </dd>
+
+        <dt>
+          Mã môn học
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MaMH)
+        </dd>
+
+        <dt>
+           Học kỳ:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HocKy)
+        </dd>
+
+        <dt>
+           Điểm thi L1:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DiemLan1)
+        </dd>
+
+        <dt>
+           Điểm thi L2:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DiemLan2)
+        </dd>
+
+        <dt>
+            Điểm trung bình:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DiemTB)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Xóa" class="btn btn-danger" /> |
+            @Html.ActionLink("Quay về", "ViewPointStudent")
+        </div>
+    }
+</div>

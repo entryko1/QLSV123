@@ -1,0 +1,84 @@
+﻿@using DoAnQLSV.Models
+@using PagedList.Mvc
+@model PagedList.IPagedList<BAIVIET>
+
+@{
+    ViewBag.Title = "ViewNews";
+    Layout = "~/Views/Shared/_LayoutAdminITU.cshtml";
+}
+
+
+
+
+<h2 style="color:red">Danh sách bài viết</h2>
+
+<p>
+    @using (Html.BeginForm())
+    {
+    <p>
+        @Html.TextBox("timkiem")      
+        @Html.DropDownList("Id", ViewBag.Id as SelectList, "--Chọn mục--")
+        <input type="submit" value="Tìm kiếm" />
+    </p>
+    }
+
+ </p>
+<table style="width:100%" class="table">
+  
+        <tr>
+            <th style="text-align:center">Tiêu đề</th>           
+            <th style="text-align:center">Tóm tắt</th>
+            <th style="text-align:center">Ngày viết</th>
+            <th style="text-align:center">Chức năng</th>
+        </tr>
+
+        @foreach (var item in Model)
+         {
+            <tr>
+                <td style="width:300px">@Html.DisplayFor(modelItem => item.TieuDe)</td>
+                <td style="width:500px">@Html.DisplayFor(modelItem => item.TomTat)</td>
+                <td align="center">@String.Format("{0:dd/MM/yyyy}", item.NgayViet)</td>
+                 
+                <td align="center">
+                 @Html.ActionLink("Sửa", "EditNews", new {  id=item.IdBV  }) --
+                 @Html.ActionLink("Chi Tiết", "DetailsNews", new { id = item.IdBV }) --
+                 @Html.ActionLink("Xóa", "DeleteNews", new { id = item.IdBV })
+                </td>
+             </tr>
+        }
+    
+   
+</table>
+
+
+<div class="MenuTrang">
+    @Html.PagedListPager(Model, page => Url.Action("ViewNews", new {page, Id = ViewBag.SearchId, timkiem = ViewBag.SearchString }), PagedListRenderOptions.PageNumbersOnly)
+</div>
+<style>
+    .MenuTrang li {
+        display: inline;
+    }
+
+        table, th, td {
+            border: 0.5px solid;
+        }
+    #timkiem{
+        font-family: inherit;
+        font-size: inherit;
+        line-height: inherit;
+         width: 450px;
+         border-radius: 10px;
+    }
+    #Id{
+            font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    width: 200px;
+    border-radius: 10px;
+    height: 30px;
+    }
+   
+</style>
+
+
+

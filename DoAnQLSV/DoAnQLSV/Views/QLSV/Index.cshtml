@@ -1,8 +1,14 @@
 ﻿
+
+@model IEnumerable<DoAnQLSV.Models.BAIVIET>
+
+
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_LayoutIndex.cshtml";
 }
+
+
 <head>
     <title>IT-University</title>
     <link href="~/Content/style.css" rel="stylesheet" type="text/css" media="all" />
@@ -25,9 +31,10 @@
                                 <div class="title-desc"><p>Tin tức</p></div>
                                 <div class="clear"></div>
                             </div>
-                            <p class="desc"><strong>Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod tempor incididunt.</strong></p>
-                            <p class="desc1">Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet conse ctetur adipisicing elit.</p>
-                            <a href="#" class="btn btn-primary"><span>Xem thêm</span><img src="~/images/more_arrow.png" alt=""></a>
+
+                            <a href="@Url.Action("ChitietBaiviet", "QLSV", new { id = ViewBag.IdBv })"><p class="desc"><strong>@ViewBag.TieuDe</strong></p></a>
+                            <p class="desc1">@ViewBag.TomTat</p>
+                            <a href="@Url.Action("TinTuc", "QLSV", new { id = 3})" class="btn btn-primary"><span>Xem thêm</span><img src="~/images/more_arrow.png" alt=""></a>
                         </div>
                         <div class="col_1_of_3 span_1_of_3">
                             <div class="title-img1">
@@ -35,9 +42,9 @@
                                 <div class="title-desc"><p>Thành tựu</p></div>
                                 <div class="clear"></div>
                             </div>
-                            <p class="desc-middle"><strong>Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod tempor incididunt.</strong></p>
-                            <p class="desc1">Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet conse ctetur adipisicing elit.</p>
-                            <a href="#" class="btn btn-primary1"><span>Xem thêm</span><img src="~/images/more_arrow.png" alt=""></a>
+                            <a href="@Url.Action("ChitietBaiviet", "QLSV", new { id = ViewBag.IdBv2 })"><p class="desc"><strong>@ViewBag.TieuDe2</strong></p></a>
+                            <p class="desc1"> @ViewBag.TomTat2</p>
+                            <a href="@Url.Action("ThanhTuu", "QLSV", new { id = 4})" class="btn btn-primary"><span>Xem thêm</span><img src="~/images/more_arrow.png" alt=""></a>
                         </div>
                         <div class="col_1_of_3 span_1_of_3">
                             <div class="title-img2">
@@ -45,9 +52,9 @@
                                 <div class="title-desc"><p>Đội ngũ liên kết</p></div>
                                 <div class="clear"></div>
                             </div>
-                            <p class="last"><strong>Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod tempor incididunt.</strong></p>
-                            <p class="desc1">Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet conse ctetur adipisicing elit.</p>
-                            <a href="#" class="btn btn-primary2"><span>Xem thêm</span><img src="~/images/more_arrow.png" alt=""></a>
+                            <a href="@Url.Action("ChitietBaiviet", "QLSV", new { id = ViewBag.IdBv3 })"><p class="desc"><strong>@ViewBag.TieuDe3</strong></p></a>
+                            <p class="desc1">@ViewBag.TomTat3</p>
+                            <a href="@Url.Action("DoiNguLienKet", "QLSV", new { id = 5})" class="btn btn-primary"><span>Xem thêm</span><img src="~/images/more_arrow.png" alt=""></a>
                         </div>
                         <div class="clear"></div>
                     </div>
@@ -67,61 +74,38 @@
                     <div class="col_1_of_3 span_1_of_3">
                         <h3>Hỗ trợ việc học</h3>
                         <ul class="dishes_list">
-                            <li><a href="#">Consectetur adipisicing elit</a></li>
-                            <li><a href="#">Sed do eiusmod tempor incididunt</a></li>
-                            <li><a href="#">Labore et dolore magna aliqua.</a></li>
-                            <li><a href="#">Sed do eiusmod tempor Dolore</a></li>
-                            <li><a href="#">Abore et dolore magna Dolore elit</a></li>
-                            <li><a href="#">Incididunt ut labore et dolore</a></li>
-                            <li><a href="#">Incididunt ut labore et dolore</a></li>
-                            <li class="last"><a href="#">Adipisicing elit, sed do eiusmod</a></li>
+                            @foreach (var item in Model.Where(model => model.Id == 6).Take(7))
+                            {
+
+                                <li><a href="@Url.Action("ChitietBaiviet", "QLSV", new { id = item.IdBV})">@item.TieuDe</a></li>
+
+                            }
+
+
                             <div class="clear"> </div>
                         </ul>
-                        <a href="#" class="btn btn-primary1"><span>Xem thêm</span><img src="~/images/more_arrow.png" alt=""></a>
+
+                        <a href="@Url.Action("Hotroviechoc","QLSV", new {id = 6})" class="btn btn-primary1"><span>Xem thêm</span><img src="~/images/more_arrow.png" alt=""></a>
                     </div>
                     <div class="col_1_of_3 span_1_of_3">
                         <h3>Tin nổi bật</h3>
-                        <div class="latest-news-grid">
-                            <div class="latest-news-pic">
-                                <img src="~/images/pic.jpg" title="imag-name">
+                        @foreach (var item in Model.Where(model => model.Id == 3).OrderBy(n => n.NgayViet).Take(4))
+                        {
+                            <div class="latest-news-grid">
+                                <div class="latest-news-pic">
+                                    <a href="@Url.Action("ChitietBaiviet", "QLSV", new { id = item.IdBV})"><img src="@Url.Content("~/images/imagesNews/" + item.HinhAnh)" title="imag-name"></a>
+                                    
+                                </div>
+                                <div class="latest-news-info">
+                                    <a href="@Url.Action("ChitietBaiviet", "QLSV", new { id = item.IdBV})">@String.Format("{0:dd/MM/yyyy}", item.NgayViet)</a>
+                                    <a href="@Url.Action("ChitietBaiviet", "QLSV", new { id = item.IdBV})"><p class="desc1">@item.TieuDe</p></a>
+                                    
+                                </div>
+                                <div class="clear"> </div>
                             </div>
-                            <div class="latest-news-info">
-                                <a href="#">Jan 21.01.2013</a>
-                                <p class="desc1">Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod tempor</p>
-                            </div>
-                            <div class="clear"> </div>
-                        </div>
-                        <div class="latest-news-grid">
-                            <div class="latest-news-pic">
-                                <img src="~/images/pic1.jpg" title="imag-name">
-                            </div>
-                            <div class="latest-news-info">
-                                <a href="#">Jan 21.01.2013</a>
-                                <p class="desc1">Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod tempor</p>
-                            </div>
-                            <div class="clear"> </div>
-                        </div>
-                        <div class="latest-news-grid">
-                            <div class="latest-news-pic">
-                                <img src="~/images/pic2.jpg" title="imag-name">
-                            </div>
-                            <div class="latest-news-info">
-                                <a href="#">Jan 21.01.2013</a>
-                                <p class="desc1">Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod tempor</p>
-                            </div>
-                            <div class="clear"> </div>
-                        </div>
-                        <div class="latest-news-grid">
-                            <div class="latest-news-pic">
-                                <img src="~/images/pic3.jpg" title="imag-name">
-                            </div>
-                            <div class="latest-news-info">
-                                <a href="#">Jan 21.01.2013</a>
-                                <p class="desc1">Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod tempor</p>
-                            </div>
-                            <div class="clear"> </div>
-                        </div>
-                        <a href="#" class="btn btn-primary2"><span>Xem thêm</span><img src="~/images/more_arrow.png" alt=""></a>
+                        }
+
+                       
                     </div>
                     <div class="clear"></div>
                 </div>
@@ -135,3 +119,4 @@
     </div>
 
 </body>
+

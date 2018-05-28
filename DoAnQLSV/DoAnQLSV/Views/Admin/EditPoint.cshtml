@@ -1,0 +1,70 @@
+﻿@model DoAnQLSV.Models.DIEM
+
+@{
+    ViewBag.Title = "EditPoint";
+    Layout = "~/Views/Shared/_LayoutAdminStudent.cshtml";
+}
+
+<style>
+    .tb1 tr th{
+        padding: 15px 40px;
+    }
+</style>
+<h2 style="color:red">EditPoint</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+
+        <h4>SỬA ĐIỂM SINH VIÊN</h4>
+        <hr />
+       
+       
+        <table class="tb1">
+            <tr>
+
+                <td>@Html.HiddenFor(model => model.Stt)</td>
+            </tr>
+            <tr>
+
+                <td>@Html.HiddenFor(m => m.MaMH)</td>
+            </tr>
+            <tr>
+                <th> MSSV:</th>
+                <td>@Html.TextBoxFor(m => m.MaSV)</td>
+            </tr>
+            <tr>
+                <th> Môn học:</th>
+                <td>@Html.TextBoxFor(m => m.MONHOC.TenMH, new { disabled = "disabled" })</td>
+            </tr>
+           
+            <tr>
+                <th> Học kỳ:</th>
+                <td>@Html.TextBoxFor(m => m.HocKy)</td>
+            </tr>
+            <tr>
+                <th> Điểm thi L1:</th>
+                <td>@Html.TextBoxFor(m => m.DiemLan1)</td>
+            </tr>
+            <tr>
+                <th> Điểm thi L2:</th>
+                <td>@Html.TextBoxFor(m => m.DiemLan2)</td>
+            </tr>
+            <tr>
+                <th> Điểm trung bình:</th>
+                <td>@Html.TextBoxFor(m => m.DiemTB)</td>
+            </tr>
+
+
+            <tr>
+                <td></td>
+                <td><input type="submit" name="Update" value="Câp nhật" class="btn btn-warning" /></td>
+            </tr>
+        </table>
+       
+}
+
+<div>
+    @Html.ActionLink("Quay về", "ViewPointStudent")
+</div>

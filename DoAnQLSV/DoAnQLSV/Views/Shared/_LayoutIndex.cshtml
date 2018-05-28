@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿
+@using DoAnQLSV.Models
+
+<!DOCTYPE html>
 
 <html>
 <head>
@@ -25,10 +28,10 @@
                 <div class="header_top">
                     <div class="menu">
                         <ul>
-                            <li id ="demo"><a href="@Url.Action("Index","QLSV")"  onclick="fun()">Trang chủ</a></li>
+                            <li id ="demo"><a href="@Url.Action("Index", "QLSV")"  onclick="fun()">Trang chủ</a></li>
 						    	
-                            <li id ="demo"><a href="@Url.Action("Doingugiangvien","QLSV")"  onclick="fun()">Đội ngũ giảng viên</a></li>
-                            <li id ="demo"><a href="@Url.Action("Chuongtrinhhoc","QLSV")"  onclick="fun()">Chương trình học</a></li>
+                            <li id ="demo"><a href="@Url.Action("Doingugiangvien", "QLSV", new { id = 1})"  onclick="fun()">Đội ngũ giảng viên</a></li>
+                            <li id ="demo"><a href="@Url.Action("Chuongtrinhhoc", "QLSV", new { id = 2})"  onclick="fun()">Chương trình học</a></li>
                             <li id ="demo"><a href="@Url.Action("Diachi","QLSV")"  onclick="fun()">Địa chỉ</a></li>
                           
                             <div class="clear"></div>
