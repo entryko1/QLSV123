@@ -1,0 +1,227 @@
+<<<<<<< HEAD:DoAnQLSV/DoAnQLSV/Views/QLSV/Index.cshtml
+﻿
+
+@model IEnumerable<DoAnQLSV.Models.BAIVIET>
+
+=======
+﻿@using DoAnQLSV.Models
+@using PagedList.Mvc
+@model PagedList.IPagedList<DIEM>
+>>>>>>> 7978023df9120ecfb7a0d6d54f1cfd8d22c9f2d5:new-QLSV/DoAnQLSV/DoAnQLSV/Views/TimKiem/TiemkiemSV.cshtml
+
+@{
+    ViewBag.Title = "TiemkiemSV";
+    Layout = "~/Views/Shared/_LayoutIndex.cshtml";
+}
+
+
+<head>
+    <title>IT-University</title>
+    <link href="~/Content/style.css" rel="stylesheet" type="text/css" media="all" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href='//fonts.googleapis.com/css?family=Montserrat+Alternates' rel='stylesheet' type='text/css'>
+    <link href="~/Nivo-slider/nivo-slider.css" rel="stylesheet" />   
+    <link href="~/Content/TimKiemSV.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Nivo-slider/jquery.nivo.slider.js"></script>
+    <script src="~/Nivo-slider/jquery.nivo.slider.pack.js"></script>
+</head>
+<body>
+    <div class="banner-box">
+        <div class="wrap">
+            <div class="main-top">
+                <div class="main">
+<<<<<<< HEAD:DoAnQLSV/DoAnQLSV/Views/QLSV/Index.cshtml
+                    <div class="banner">
+                        <img src="~/images/banner.png" alt="" />
+                    </div>
+                    <div class="section-top">
+                        <div class="col_1_of_3 span_1_of_3">
+                            <div class="title-img">
+                                <div class="title"><img src="~/images/book1.png" alt="" /></div>
+                                <div class="title-desc"><p>Tin tức</p></div>
+                                <div class="clear"></div>
+                            </div>
+
+                            <a href="@Url.Action("ChitietBaiviet", "QLSV", new { id = ViewBag.IdBv })"><p class="desc"><strong>@ViewBag.TieuDe</strong></p></a>
+                            <p class="desc1">@ViewBag.TomTat</p>
+                            <a href="@Url.Action("TinTuc", "QLSV", new { id = 3})" class="btn btn-primary"><span>Xem thêm</span><img src="~/images/more_arrow.png" alt=""></a>
+                        </div>
+                        <div class="col_1_of_3 span_1_of_3">
+                            <div class="title-img1">
+                                <div class="title"><img src="~/images/cup.png" alt="" /></div>
+                                <div class="title-desc"><p>Thành tựu</p></div>
+                                <div class="clear"></div>
+                            </div>
+                            <a href="@Url.Action("ChitietBaiviet", "QLSV", new { id = ViewBag.IdBv2 })"><p class="desc"><strong>@ViewBag.TieuDe2</strong></p></a>
+                            <p class="desc1"> @ViewBag.TomTat2</p>
+                            <a href="@Url.Action("ThanhTuu", "QLSV", new { id = 4})" class="btn btn-primary"><span>Xem thêm</span><img src="~/images/more_arrow.png" alt=""></a>
+                        </div>
+                        <div class="col_1_of_3 span_1_of_3">
+                            <div class="title-img2">
+                                <div class="title"><img src="~/images/books.png" alt="" /></div>
+                                <div class="title-desc"><p>Đội ngũ liên kết</p></div>
+                                <div class="clear"></div>
+                            </div>
+                            <a href="@Url.Action("ChitietBaiviet", "QLSV", new { id = ViewBag.IdBv3 })"><p class="desc"><strong>@ViewBag.TieuDe3</strong></p></a>
+                            <p class="desc1">@ViewBag.TomTat3</p>
+                            <a href="@Url.Action("DoiNguLienKet", "QLSV", new { id = 5})" class="btn btn-primary"><span>Xem thêm</span><img src="~/images/more_arrow.png" alt=""></a>
+=======
+                    <div class="banner" style="clear:both">
+                        <div id="slider" class="nivoSlider">
+                            <img src="~/HinhSanPham/banner1.png" width="1141" height="427"/>
+                            <img src="~/HinhSanPham/banner2.png" width="1141" height="427" />
+                            <img src="~/HinhSanPham/banner3.jpg" width="1141" height="427"/>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="timkiemsinhvien"  >
+                        <h2 align="center" style="font-family: cursive ; color: darkorange">Danh Sách Sinh Viên</h2>
+                        <table >
+                            <tr>
+                                <th>
+                                    Họ Tên
+                                </th>
+                                <th>
+                                    MSSV
+                                </th>
+                                <th>
+                                    Mã Môn Học
+                                </th>
+                                <th>
+                                    Học Kỳ
+                                </th>
+                                <th>
+                                    Điểm L1
+                                </th>
+                                <th>
+                                    Điểm L2
+                                </th>
+                                <th>
+                                    Điểm trung bình
+                                </th>
+                                <th></th>
+                            </tr>
+
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.SINHVIEN.TenSV)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.MaSV)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.MaMH)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.HocKy)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.DiemLan1)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.DiemLan2)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.DiemTB)
+                                    </td>
+
+                                </tr>
+                            }
+
+                        </table>
+                        Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)/@Model.PageCount;
+                        <div class="MenuTrang">
+                            @Html.PagedListPager(Model, page => Url.Action("TimkiemSV", new { page = page }))
+>>>>>>> 7978023df9120ecfb7a0d6d54f1cfd8d22c9f2d5:new-QLSV/DoAnQLSV/DoAnQLSV/Views/TimKiem/TiemkiemSV.cshtml
+                        </div>
+                        <style>
+                            .MenuTrang li {
+                                display: inline;
+                            }
+                        </style>
+                        <div class="clear"></div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="main-bottom">
+            <div class="wrap">
+                <div class="content-bottom">
+                    <div class="col_1_of_3 span_1_of_3">
+                        <h3>Chào mừng đến với ITU</h3>
+                        <p class="desc2"><strong>Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod tempor incididunt.</strong></p>
+                        <p class="desc1">Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequ.</p>
+                        <p class="desc1">Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut conse ctetur adipisicing elit, sed do eiusmod conse ctetur adipisicing elit, sed do eiusmod</p>
+                        <a href="#" class="btn btn-primary"><span>Xem thêm</span><img src="~/images/more_arrow.png" alt=""></a>
+                    </div>
+                    <div class="col_1_of_3 span_1_of_3">
+                        <h3>Hỗ trợ việc học</h3>
+                        <ul class="dishes_list">
+                            @foreach (var item in Model.Where(model => model.Id == 6).Take(7))
+                            {
+
+                                <li><a href="@Url.Action("ChitietBaiviet", "QLSV", new { id = item.IdBV})">@item.TieuDe</a></li>
+
+                            }
+
+
+                            <div class="clear"> </div>
+                        </ul>
+
+                        <a href="@Url.Action("Hotroviechoc","QLSV", new {id = 6})" class="btn btn-primary1"><span>Xem thêm</span><img src="~/images/more_arrow.png" alt=""></a>
+                    </div>
+                    <div class="col_1_of_3 span_1_of_3">
+                        <h3>Tin nổi bật</h3>
+                        @foreach (var item in Model.Where(model => model.Id == 3).OrderBy(n => n.NgayViet).Take(4))
+                        {
+                            <div class="latest-news-grid">
+                                <div class="latest-news-pic">
+                                    <a href="@Url.Action("ChitietBaiviet", "QLSV", new { id = item.IdBV})"><img src="@Url.Content("~/images/imagesNews/" + item.HinhAnh)" title="imag-name"></a>
+                                    
+                                </div>
+                                <div class="latest-news-info">
+                                    <a href="@Url.Action("ChitietBaiviet", "QLSV", new { id = item.IdBV})">@String.Format("{0:dd/MM/yyyy}", item.NgayViet)</a>
+                                    <a href="@Url.Action("ChitietBaiviet", "QLSV", new { id = item.IdBV})"><p class="desc1">@item.TieuDe</p></a>
+                                    
+                                </div>
+                                <div class="clear"> </div>
+                            </div>
+                        }
+
+                       
+                    </div>
+                    <div class="clear"></div>
+                </div>
+            </div>
+        </div>
+        <div class="wrap">
+            <div class="copy-right">
+                <p>Phan Hồ Trọng Hiếu & Dương Quốc Hào | <a href="fb.com/entryko1"> Facebook</a></p>
+            </div>
+        </div>
+    </div>
+
+
+    @*nivo-slider*@
+    <script type="text/javascript">
+        $(window).load(function() {
+            $('#slider').nivoSlider({
+                controlNav: false,
+                nextText: '',
+                prevText: '',
+
+            });
+        });
+    </script>
+</body>
+
+<<<<<<< HEAD:DoAnQLSV/DoAnQLSV/Views/QLSV/Index.cshtml
+=======
+
+
+>>>>>>> 7978023df9120ecfb7a0d6d54f1cfd8d22c9f2d5:new-QLSV/DoAnQLSV/DoAnQLSV/Views/TimKiem/TiemkiemSV.cshtml

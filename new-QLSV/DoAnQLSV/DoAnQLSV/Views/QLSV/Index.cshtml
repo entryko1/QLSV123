@@ -8,7 +8,11 @@
     <link href="~/Content/style.css" rel="stylesheet" type="text/css" media="all" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <link href='//fonts.googleapis.com/css?family=Montserrat+Alternates' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Montserrat+Alternates' rel='stylesheet' type='text/css'>    
+    <link href="~/Nivo-slider/nivo-slider.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Nivo-slider/jquery.nivo.slider.js"></script>
+    <script src="~/Nivo-slider/jquery.nivo.slider.pack.js"></script>
 </head>
 <body>
     <div class="banner-box">
@@ -16,7 +20,11 @@
             <div class="main-top">
                 <div class="main">
                     <div class="banner">
-                        <img src="~/images/banner.png" alt="" />
+                        <div id="slider" class="nivoSlider">
+                            <img src="~/HinhSanPham/banner1.png" />
+                            <img src="~/HinhSanPham/banner2.png" />
+                            <img src="~/HinhSanPham/banner3.jpg" />
+                        </div>
                     </div>
                     <div class="section-top">
                         <div class="col_1_of_3 span_1_of_3">
@@ -134,4 +142,16 @@
         </div>
     </div>
 
+
+    @*nivo-slider*@
+    <script type="text/javascript">
+        $(window).load(function() {
+            $('#slider').nivoSlider({
+                controlNav: false,
+                nextText: '',
+                prevText: '',
+
+            });
+        });
+    </script>
 </body>

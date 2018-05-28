@@ -211,6 +211,7 @@
     <Compile Include="Controllers\LoginUserController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\QLSVController.cs" />
+    <Compile Include="Controllers\TimKiemController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -268,6 +269,7 @@
     <Content Include="Content\style1.css" />
     <Content Include="Content\styleAdminStudent.css" />
     <Content Include="Content\swipebox.css" />
+    <Content Include="Content\TimKiemSV.css" />
     <Content Include="favicon.ico" />
     <Content Include="fontsAdminStudent\fontawesome-webfont.svg" />
     <Content Include="fontsUser\fontawesome-webfont.svg" />
@@ -275,6 +277,9 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="HinhSanPham\banner1.png" />
+    <Content Include="HinhSanPham\banner2.png" />
+    <Content Include="HinhSanPham\banner3.jpg" />
     <Content Include="images\1.png" />
     <Content Include="images\1024.png" />
     <Content Include="images\1024bottom.png" />
@@ -360,6 +365,9 @@
     <Content Include="images\tick.png" />
     <Content Include="images\tw.png" />
     <Content Include="images\user.png" />
+    <Content Include="Nivo-slider\jquery.nivo.slider.js" />
+    <Content Include="Nivo-slider\jquery.nivo.slider.pack.js" />
+    <Content Include="Nivo-slider\nivo-slider.css" />
     <Content Include="Scripts\ai.0.22.9-build00167.js" />
     <Content Include="Scripts\ai.0.22.9-build00167.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -481,6 +489,8 @@
     <Content Include="Views\Admin\ViewPointStudent.cshtml" />
     <Content Include="Views\Admin\EditPoint.cshtml" />
     <Content Include="Views\Admin\DeletePoint.cshtml" />
+    <Content Include="Views\LoginUser\CapNhatThongTinSV.cshtml" />
+    <Content Include="Views\TimKiem\TiemkiemSV.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

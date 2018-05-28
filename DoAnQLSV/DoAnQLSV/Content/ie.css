@@ -1,8 +1,0 @@
-.jcarousel-prev {
-	background-image:none;
-	filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='~/Content/images/jcarousel-prev.png', sizingMethod='image');
-}
-.jcarousel-next {
-	background-image:none;
-	filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='~/Content/images/jcarousel-next.png', sizingMethod='image');
-}
