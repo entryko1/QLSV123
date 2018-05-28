@@ -45,7 +45,7 @@
                         <h2><a href="index.html">Kết nối - Chia sẽ - Đam mê</a></h2>
                     </div>
                     <div class="search">
-                        @using (Html.BeginForm("TiemkiemSV", "TimKiem"))
+                        @using (Html.BeginForm("TimkiemSV", "LoginUser",FormMethod.Post))
                         {
 
                                 <input type="text" name="txtTimkiem" placeholder="Nhập Mã Số Hoặc Tên Cần Tìm">

@@ -17,6 +17,25 @@
     <script src="~/Scripts/jquery-1.10.2.min.js"></script>
     <script src="~/Nivo-slider/jquery.nivo.slider.js"></script>
     <script src="~/Nivo-slider/jquery.nivo.slider.pack.js"></script>
+    <style type="text/css">
+        table, td, th {
+                            border: 1px solid black;
+                        }
+        .point-exam {
+                    border-collapse: collapse;
+                    width: 100%;
+                    padding-top:10px;
+                }
+
+        th{
+            background-color:#ffd800
+        }
+        th,td{
+            padding: 8px;
+        }
+
+        tr:hover {background-color:#44efdf;}
+    </style>
 </head>
 <body>
     <div class="banner-box">
@@ -32,8 +51,11 @@
                         <div class="clear"></div>
                     </div>
                     <div class="timkiemsinhvien"  >
-                        <h2 align="center" style="font-family: cursive ; color: darkorange">Danh Sách Sinh Viên</h2>
-                        <table >
+                        <h2 align="center" style="font-family: cursive ; color: darkorange;padding-top:10px;padding-bottom:10px">
+                        Danh Sách Sinh Viên Cần Tìm
+                        </h2>
+                        
+                        <table class="point-exam">
                             <tr>
                                 <th>
                                     Họ Tên
@@ -42,7 +64,7 @@
                                     MSSV
                                 </th>
                                 <th>
-                                    Mã Môn Học
+                                    Môn Học
                                 </th>
                                 <th>
                                     Học Kỳ
@@ -56,7 +78,7 @@
                                 <th>
                                     Điểm trung bình
                                 </th>
-                                <th></th>
+                                
                             </tr>
 
                             @foreach (var item in Model)
@@ -69,7 +91,7 @@
                                         @Html.DisplayFor(modelItem => item.MaSV)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.MaMH)
+                                        @Html.DisplayFor(modelItem => item.MONHOC.TenMH)
                                     </td>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.HocKy)
@@ -88,9 +110,9 @@
                             }
 
                         </table>
-                        Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)/@Model.PageCount;
+                        Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)/@Model.PageCount
                         <div class="MenuTrang">
-                            @Html.PagedListPager(Model, page => Url.Action("TimkiemSV", new { page = page }))
+                            @Html.PagedListPager(Model, page => Url.Action("TimkiemSV", new { page = page,@sTukhoa = ViewBag.TuKhoa }))
                         </div>
                         <style>
                             .MenuTrang li {

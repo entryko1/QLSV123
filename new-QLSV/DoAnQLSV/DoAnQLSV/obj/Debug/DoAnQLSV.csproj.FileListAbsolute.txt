@@ -167,6 +167,6 @@ C:\Users\Admin\Desktop\QLSV123\new-QLSV\DoAnQLSV\DoAnQLSV\bin\Microsoft.Owin.Sec
 C:\Users\Admin\Desktop\QLSV123\new-QLSV\DoAnQLSV\DoAnQLSV\bin\Microsoft.Owin.Security.Google.xml
 C:\Users\Admin\Desktop\QLSV123\new-QLSV\DoAnQLSV\DoAnQLSV\bin\Microsoft.Owin.Security.Twitter.xml
 C:\Users\Admin\Desktop\QLSV123\new-QLSV\DoAnQLSV\DoAnQLSV\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
-C:\Users\Admin\Desktop\QLSV123\new-QLSV\DoAnQLSV\DoAnQLSV\obj\Debug\DoAnQLSV.csprojResolveAssemblyReference.cache
 C:\Users\Admin\Desktop\QLSV123\new-QLSV\DoAnQLSV\DoAnQLSV\obj\Debug\DoAnQLSV.dll
 C:\Users\Admin\Desktop\QLSV123\new-QLSV\DoAnQLSV\DoAnQLSV\obj\Debug\DoAnQLSV.pdb
+C:\Users\Admin\Desktop\QLSV123\new-QLSV\DoAnQLSV\DoAnQLSV\obj\Debug\DoAnQLSV.csprojResolveAssemblyReference.cache

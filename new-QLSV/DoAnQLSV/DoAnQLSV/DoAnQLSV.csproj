@@ -211,7 +211,6 @@
     <Compile Include="Controllers\LoginUserController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\QLSVController.cs" />
-    <Compile Include="Controllers\TimKiemController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -490,7 +489,7 @@
     <Content Include="Views\Admin\EditPoint.cshtml" />
     <Content Include="Views\Admin\DeletePoint.cshtml" />
     <Content Include="Views\LoginUser\CapNhatThongTinSV.cshtml" />
-    <Content Include="Views\TimKiem\TiemkiemSV.cshtml" />
+    <Content Include="Views\LoginUser\TimkiemSV.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
