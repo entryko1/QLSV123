@@ -1,0 +1,71 @@
+﻿
+@using DoAnQLSV.Models
+@using PagedList.Mvc
+@model PagedList.IPagedList<BAIVIET>
+@{
+    ViewBag.Title = "Thanhtuu";
+    Layout = "~/Views/Shared/_LayoutIndex.cshtml";
+}
+
+
+<body>
+    <div class="banner-box">
+        <div class="wrap">
+            <div class="main-top">
+                <div class="main">
+                    <div class="heading3">
+                        <h3>Thành tựu</h3>
+
+                        <div class="section group">
+                            @foreach (var item in Model)
+                            {
+
+                                <div class="grid_1_of_4 images_1_of_4">
+                                    <a href="~/images/imagesNews/@item.HinhAnh" class="swipebox" title="@item.TieuDe"> <img src="~/images/imagesNews/@item.HinhAnh" alt="@item.TieuDe"><span class="zoom-icon"></span> </a>
+                                    <a href="@Url.Action("ChitietBaiviet", "QLSV", new { id = item.IdBV})"><h4>@item.TieuDe</h4></a>
+                                    <p>@item.TomTat</p>
+                                    <a href="@Url.Action("ChitietBaiviet", "QLSV", new { id = item.IdBV})" class="link">Xem thêm</a>
+                                </div>
+                            }
+
+                            <div class="clear"></div>
+
+                        </div>
+
+
+
+
+
+
+                        <div class="MenuTrang">
+                            @Html.PagedListPager(Model, page => Url.Action("ThanhTuu", new { page = page }))
+                        </div>
+                        <style>
+                            .MenuTrang li {
+                                display: inline;
+                                padding-left: 10px;
+                                padding-right: 10px;
+                                font-size: 20px;
+                                color: #dc9a1c;
+                                border-style: solid;
+                                background-color: #dbe0f3;
+                                border-color: #0037ff08;
+                                border-bottom-width: 100%;
+                                border-radius: 20px;
+                                font-weight: bold;
+                            }
+                        </style>
+                    </div>
+
+                    <div class="wrap">
+                        <div class="copy-right">
+                            <p>Phan Hồ Trọng Hiếu & Dương Quốc Hào | <a href="fb.com/entryko1"> Facebook</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+

@@ -1,0 +1,121 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <title>IT-University</title>
+    <link href="~/Content/style.css" rel="stylesheet" type="text/css" media="all" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href='//fonts.googleapis.com/css?family=Montserrat+Alternates' rel='stylesheet' type='text/css'>
+    <script type="text/javascript">
+        function fun() {
+            document.getElementById("demo").style.background = "#fa9915";
+        }
+    </script>
+    <style>
+        .dropbtn {
+            background-color: #333;
+            color: white;
+            display: block;
+            padding: 16px 20px;
+            font-family: 'Montserrat Alternates', sans-serif;
+            font-size: 0.823em;
+            text-transform: uppercase;
+            transition: all .9s;
+            border: none;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #333;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            color: #333;
+            padding: 14px 18px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown-content a:hover {background-color: #ddd}
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropdown:hover .dropbtn {
+            background-color: #333;
+        }
+    </style>
+</head>
+<body>
+
+
+    <div class="header-bg">
+        <div class="wrap">
+            <div class="total-box">
+                <div class="total">
+                    <div class="header_top">
+                        <div class="menu">
+                            <ul>
+                                
+                                <li id="demo"><a href="@Url.Action("DoingugiangvienAdmin", "LoginUser", new { id = 1})" onclick="fun()">Đội ngũ giảng viên</a></li>
+                                <li id="demo"><a href="@Url.Action("ChuongtrinhhocAdmin", "LoginUser", new { id = 2})" onclick="fun()">Chương trình học</a></li>
+                                <li id="demo"><a href="@Url.Action("DiachiAdmin", "LoginUser")" onclick="fun()">Địa chỉ</a></li>
+                                <div class="dropdown">
+                                    <button class="dropbtn">Chức năng</button>
+                                    <div class="dropdown-content">
+                                        <li id="demo" style="width: 100%"><a href="@Url.Action("Xemdiem","LoginUser")" onclick="fun()">Xem điểm</a></li>
+                                        <li id="demo" style="width: 100%"><a href="@Url.Action("Xemlichthi","LoginUser")" onclick="fun()">Xem lịch thi</a></li>
+                                        <li id="demo" style="width: 100%"><a href="@Url.Action("Thongtincanhan","LoginUser")" onclick="fun()">Thông tin cá nhân</a></li>
+                                    </div>
+                                </div>
+                               
+                                <div class="clear"></div>
+                            </ul>
+                        </div>
+                        <div class="dropdown">
+                            <button class="dropbtn btn-danger"  style="margin-left: 250px; background-color:red">Hello: @ViewBag.Taikhoan</button>
+                            <div class="dropdown-content" style="margin-left: 340px; background-color: #bf3c3c59; ">
+                                <li style="color: #bf3c3c59;"><a href="@Url.Action("EditPassStudent", "QLSV")" onclick="fun()" class="fa fa-cog" style="color:white">Đổi mật khẩu</a></li>
+                                <li style="color: #bf3c3c59;"><a href="@Url.Action("Index", "QLSV")" onclick="fun()" class="fa fa-sign-out" style="color:white">Đăng xuất</a></li>
+                            </div>
+                        </div>
+                    
+                     
+                      
+                          
+                               
+                      
+                        <div class="clear"></div>
+                    </div>
+                    <div class="header-bottom">
+                        <div class="logo">
+                            <h1><a href="#">IT-University</a></h1>
+                            <h2><a href="#">Kết nối - Chia sẽ - Đam mê</a></h2>
+                        </div>
+                       
+                        <div class="clear"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        @RenderBody()
+    </div>
+
+
+</body>
+</html>

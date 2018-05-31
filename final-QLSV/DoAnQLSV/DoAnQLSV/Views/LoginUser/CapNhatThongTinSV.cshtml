@@ -1,0 +1,171 @@
+﻿@model DoAnQLSV.Models.SINHVIEN
+@{
+    ViewBag.Title = "CapNhatThongTinSV";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+<style type="text/css">
+    table {
+        border: 5px solid #2caae6;
+        background-color: whitesmoke;
+    }
+
+    td {
+        padding: 15px;
+        text-align: left;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        font-size: 20px;
+        font-style: italic;
+        font-weight: bold;
+        padding-left: 80px;
+    }
+</style>
+<h2 align="center" style="font-family: cursive ; color: darkorange">CẬP NHẬT THÔNG TIN</h2>
+<hr />
+<center>
+    @using (Html.BeginForm(new { @class = "form" }))
+    {
+
+        <form>
+            @Html.AntiForgeryToken()
+
+            <table style="border-radius:2px">
+
+
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.MaSV)
+
+
+
+                <tr>
+                    <th>Tên Sinh Viên:</th>
+                    <td>
+                        @Model.TenSV
+                    </td>
+                </tr>
+
+                <tr>
+                    <th>
+                        Mã Sinh Viên:
+                    </th>
+                    <td>
+                        @Model.MaSV
+                    </td>
+                </tr>
+
+                <tr>
+                    <th>
+                        Tên Lớp:
+                    </th>
+                    <td>
+                        @Model.LOP.TenLop
+                    </td>
+                </tr>
+
+                <tr>
+                    <th>Giới Tính:</th>
+                    <td>
+                        <input class="form-infor" type="text" name="GioiTinh" value="@Model.GioiTinh" style="width:250px;height:25px" />
+                    </td>
+                </tr>
+
+                <tr>
+                    <th>
+                        Ngày Sinh:
+                    </th>
+                    <td>
+                        <input class="form-infor" type="text" name="NgaySinh" value="@Model.NgaySinh" style="width:250px;height:25px" />
+                    </td>
+                </tr>
+
+                <tr>
+                    <th>Quê Quán:</th>
+                    <td>
+                        <input class="form-infor" type="text" name="QueQuan" value="@Model.QueQuan" style="width:250px;height:25px" />
+                    </td>
+                </tr>
+
+                <tr>
+                    <th>Chuyên Ngành:</th>
+                    <td>
+                        @Model.ChuyenNganh
+                    </td>
+                </tr>
+
+                <tr>
+                    <th>Số Điện Thoại:</th>
+                    <td>
+                        <input class="form-infor" type="text" name="SDT" value="@Model.SDT" style="width:250px;height:25px" />
+                    </td>
+                </tr>
+
+                <tr>
+                    <th>Chứng Minh Thư:</th>
+                    <td>
+                        <input class="form-infor" type="text" name="CMND" value="@Model.CMND" style="width:250px;height:25px" />
+                    </td>
+                </tr>
+
+                <tr>
+                    <th>Nơi Thường Trú:</th>
+                    <td>
+                        <input class="form-infor" type="text" name="NoiThuongTru" value="@Model.NoiThuongTru" style="width:250px;height:25px" />
+                    </td>
+                </tr>
+
+                <tr>
+                    <th>Mã Khoa:</th>
+                    <td>
+                        @Model.KHOA.TenKhoa
+                    </td>
+                </tr>
+
+                <tr>
+                    <th>Mã Khóa Học:</th>
+                    <td>
+                        @Model.KHOAHOC.TenKhoaHoc
+                    </td>
+                </tr>
+
+                <tr>
+                    <th>
+                        Mã Lớp:
+                    </th>
+                    <td>
+                        @Model.LOP.TenLop
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div style="display:block">
+
+                            @Html.ActionLink("Trở Về", "Thongtincanhan")
+                        </div>
+                    </td>
+                    <td>
+
+                        <input type="submit" value="Save" style="width:70px;height:" style="width:70px;height:30px" />
+
+                    </td>
+
+                </tr>
+            </table>
+            @*<div class="form-group" style="display:inline">
+                    <div class="col-md-offset-2 col-md-10" style="display:block">
+                        <input type="submit" value="Save" class="btn btn-default" />
+                    </div>
+                </div>*@
+
+
+        </form>
+    }
+
+    <br />
+    @*<div style="display:block">
+
+            @Html.ActionLink("Back to List", "Thongtincanhan")
+        </div>*@
+
+    <div class="clear"></div>
+</center>
+

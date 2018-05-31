@@ -1,0 +1,145 @@
+﻿
+
+@model IEnumerable<DoAnQLSV.Models.BAIVIET>
+
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutIndex.cshtml";
+}
+
+
+<head>
+    <title>IT-University</title>
+    <link href="~/Content/style.css" rel="stylesheet" type="text/css" media="all" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href='//fonts.googleapis.com/css?family=Montserrat+Alternates' rel='stylesheet' type='text/css'>
+   
+
+   
+</head>
+<body>
+    <div class="banner-box">
+        <div class="wrap">
+            <div class="main-top">
+                <div class="main">
+                    <div class="banner">
+                        <img src="~/images/banner.png" alt="" />
+                    </div>
+                    <div class="section-top">
+                        <div class="col_1_of_3 span_1_of_3">
+                            <div class="title-img">
+                                <div class="title"><img src="~/images/book1.png" alt="" /></div>
+                                <div class="title-desc"><p>Tin tức</p></div>
+                                <div class="clear"></div>
+                            </div>
+
+                            <a href="@Url.Action("ChitietBaiviet", "QLSV", new { id = ViewBag.IdBv })"><p class="desc"><strong>@ViewBag.TieuDe</strong></p></a>
+                            <p class="desc1">@ViewBag.TomTat</p>
+                            <a href="@Url.Action("TinTuc", "QLSV", new { id = 3})" class="btn btn-primary"><span>Xem thêm</span><img src="~/images/more_arrow.png" alt=""></a>
+                        </div>
+                        <div class="col_1_of_3 span_1_of_3">
+                            <div class="title-img1">
+                                <div class="title"><img src="~/images/cup.png" alt="" /></div>
+                                <div class="title-desc"><p>Thành tựu</p></div>
+                                <div class="clear"></div>
+                            </div>
+                            <a href="@Url.Action("ChitietBaiviet", "QLSV", new { id = ViewBag.IdBv2 })"><p class="desc"><strong>@ViewBag.TieuDe2</strong></p></a>
+                            <p class="desc1"> @ViewBag.TomTat2</p>
+                            <a href="@Url.Action("ThanhTuu", "QLSV", new { id = 4})" class="btn btn-primary"><span>Xem thêm</span><img src="~/images/more_arrow.png" alt=""></a>
+                        </div>
+                        <div class="col_1_of_3 span_1_of_3">
+                            <div class="title-img2">
+                                <div class="title"><img src="~/images/books.png" alt="" /></div>
+                                <div class="title-desc"><p>Đội ngũ liên kết</p></div>
+                                <div class="clear"></div>
+                            </div>
+                            <a href="@Url.Action("ChitietBaiviet", "QLSV", new { id = ViewBag.IdBv3 })"><p class="desc"><strong>@ViewBag.TieuDe3</strong></p></a>
+                            <p class="desc1">@ViewBag.TomTat3</p>
+                            <a href="@Url.Action("DoiNguLienKet", "QLSV", new { id = 5})" class="btn btn-primary"><span>Xem thêm</span><img src="~/images/more_arrow.png" alt=""></a>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="main-bottom">
+            <div class="wrap">
+                <div class="content-bottom">
+                    <div class="col_1_of_3 span_1_of_3">
+
+                        @foreach (var item in Model.Where(model => model.Id == 7).Take(1))
+
+                        {
+                            <h3>Chào mừng đến với ITU</h3>
+                            <p class="desc2"><strong>@item.TieuDe</strong></p>
+                            <p class="desc1">@Html.Raw(item.ChiTiet)</p>
+ 
+                            <a href="@Url.Action("ChitietBaiviet", "QLSV", new { id = item.IdBV})" class="btn btn-primary"><span>Chi tiết</span><img src="~/images/more_arrow.png" alt=""></a>
+                        }
+                    </div>
+                    <div class="col_1_of_3 span_1_of_3">
+                        <h3>Hỗ trợ việc học</h3>
+                        <ul class="dishes_list">
+                            @foreach (var item in Model.Where(model => model.Id == 6).Take(7))
+                            {
+
+                            <li><a href="@Url.Action("ChitietBaiviet", "QLSV", new { id = item.IdBV})">@item.TieuDe</a></li>
+
+                            }
+
+
+                            <div class="clear"> </div>
+                        </ul>
+
+                        <a href="@Url.Action("Hotroviechoc","QLSV", new {id = 6})" class="btn btn-primary1"><span>Xem thêm</span><img src="~/images/more_arrow.png" alt=""></a>
+                    </div>
+                    <div class="col_1_of_3 span_1_of_3">
+                        <h3>Tin nổi bật</h3>
+                        @foreach (var item in Model.Where(model => model.Id == 3).OrderBy(n => n.NgayViet).Take(4))
+                        {
+                            <div class="latest-news-grid">
+                                <div class="latest-news-pic">
+                                    <a href="@Url.Action("ChitietBaiviet", "QLSV", new { id = item.IdBV})"><img src="@Url.Content("~/images/imagesNews/" + item.HinhAnh)" title="imag-name"></a>
+
+                                </div>
+                                <div class="latest-news-info">
+                                    <a href="@Url.Action("ChitietBaiviet", "QLSV", new { id = item.IdBV})">@String.Format("{0:dd/MM/yyyy}", item.NgayViet)</a>
+                                    <a href="@Url.Action("ChitietBaiviet", "QLSV", new { id = item.IdBV})"><p class="desc1">@item.TieuDe</p></a>
+
+                                </div>
+                                <div class="clear"> </div>
+                            </div>
+                        }
+
+
+                    </div>
+                    <div class="clear"></div>
+                </div>
+            </div>
+        </div>
+        <div class="wrap">
+            <div class="copy-right">
+                <p>Phan Hồ Trọng Hiếu & Dương Quốc Hào | <a href="fb.com/entryko1"> Facebook</a></p>
+            </div>
+        </div>
+    </div>
+    <!--Start of Tawk.to Script-->
+    <script type="text/javascript">
+var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+(function(){
+var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+s1.async=true;
+s1.src='https://embed.tawk.to/5b0e4b4c8859f57bdc7bad10/default';
+s1.charset='UTF-8';
+s1.setAttribute('crossorigin','*');
+s0.parentNode.insertBefore(s1,s0);
+})();
+    </script>
+    <!--End of Tawk.to Script-->
+
+</body>
+
+
+

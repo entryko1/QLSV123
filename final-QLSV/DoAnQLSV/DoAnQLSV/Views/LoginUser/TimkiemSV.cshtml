@@ -1,0 +1,196 @@
+﻿@model IEnumerable<DoAnQLSV.Models.DIEM>
+
+
+@{
+    ViewBag.Title = "TiemkiemSV";
+    Layout = "~/Views/Shared/_LayoutIndex.cshtml";
+}
+<head>
+    <title>IT-University</title>
+    <link href="~/Content/style.css" rel="stylesheet" type="text/css" media="all" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href='//fonts.googleapis.com/css?family=Montserrat+Alternates' rel='stylesheet' type='text/css'>
+    <link href="~/Nivo-slider/nivo-slider.css" rel="stylesheet" />
+    <link href="~/Content/TimKiemSV.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Nivo-slider/jquery.nivo.slider.js"></script>
+    <script src="~/Nivo-slider/jquery.nivo.slider.pack.js"></script>
+    <style type="text/css">
+        .point-exam, .point-exam td, .point-exam th {
+            border: 1px solid black;
+        }
+
+        .point-exam {
+            border-collapse: collapse;
+            width: 100%;
+            padding-top: 10px;
+        }
+
+            .point-exam th {
+                background-color: #ffd800;
+            }
+
+            .point-exam th, .point-exam td {
+                padding: 8px;
+            }
+
+            .point-exam tr:hover {
+                background-color: #44efdf;
+            }
+
+        #thongtinchung {
+            padding: 5px 30px 5px;
+            padding-bottom: 20px;
+        }
+
+            #thongtinchung tr {
+                padding-bottom: 10px;
+            }
+
+            #thongtinchung th, #thongtinchung td {
+                padding-left: 30px;
+                font-family: 'Segoe UI Historic';
+            }
+
+            #thongtinchung th {
+                font-size: 14px;
+            }
+
+            #thongtinchung td {
+                font-size: 20px;
+                font-weight: 900;
+            }
+    </style>
+</head>
+<body>
+    <div class="banner-box">
+        <div class="wrap">
+            <div class="main-top">
+                <div class="main">
+                    <div class="banner">
+                        <div id="slider" class="nivoSlider">
+                            <img src="~/HinhSanPham/banner1.png" />
+                            <img src="~/HinhSanPham/banner2.png" />
+                            <img src="~/HinhSanPham/banner3.jpg" />
+                        </div>
+                    </div>
+                    <div class="timkiemsinhvien">
+                        <h2 align="center" style="font-family: cursive ; color: darkorange;padding-top:10px;padding-bottom:10px">
+                            Sinh Viên Cần Tìm
+                        </h2>
+                        <div id="thongtinchung" align="center" style="clear:both">
+                            <table class="infor-st">
+                                <tr>
+                                    <th>Tên sinh Viên:</th>
+                                    <td>@ViewBag.TenSV</td>
+                                </tr>
+                                <tr>
+                                    <th>Mã Sinh Viên:</th>
+                                    <td>@ViewBag.Mssv</td>
+                                </tr>
+                                <tr>
+                                    <th>Giới tính:</th>
+                                    <td>@ViewBag.Gioitinh</td>
+                                </tr>
+                                <tr>
+                                    <th>Ngày Sinh:</th>
+                                    <td>@ViewBag.Ngaysinh</td>
+                                </tr>
+                                <tr>
+                                    <th>Nơi Sinh:</th>
+                                    <td>@ViewBag.Noisinh</td>
+                                </tr>
+                                <tr>
+                                    <th>Lớp:</th>
+                                    <td>@ViewBag.Lop </td>
+                                </tr>
+                                <tr>
+                                    <th>Ngành:</th>
+                                    <td>@ViewBag.Nganh</td>
+                                </tr>
+                                <tr>
+                                    <th>Khoa:</th>
+                                    <td>@ViewBag.Khoa</td>
+                                </tr>
+                                <tr>
+                                    <th>Hệ Đào Tạo:</th>
+                                    <td>@ViewBag.Hedaotao</td>
+                                </tr>
+                                <tr>
+                                    <th>Khóa Học:</th>
+                                    <td>@ViewBag.Khoahoc</td>
+                                </tr>
+                            </table>
+                        </div>
+
+                        <div class="xemdiemchung">
+                            <table class="point-exam">
+                                <tr>
+                                    <th>
+                                        Môn Học
+                                    </th>
+                                    <th>
+                                        Học Kỳ
+                                    </th>
+                                    <th>
+                                        Điểm L1
+                                    </th>
+                                    <th>
+                                        Điểm L2
+                                    </th>
+                                    <th>
+                                        Điểm trung bình
+                                    </th>
+
+                                </tr>
+
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.MONHOC.TenMH)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.HocKy)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.DiemLan1)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.DiemLan2)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.DiemTB)
+                                        </td>
+
+                                    </tr>
+                                }
+
+                            </table>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="wrap">
+                <div class="copy-right">
+                    <p>Phan Hồ Trọng Hiếu & Dương Quốc Hào | <a href="fb.com/entryko1"> Facebook</a></p>
+                </div>
+            </div>
+        </div>
+
+
+        @*nivo-slider*@
+        <script type="text/javascript">
+        $(window).load(function() {
+            $('#slider').nivoSlider({
+                controlNav: false,
+                nextText: '',
+                prevText: '',
+
+            });
+        });
+        </script>
+</body>
