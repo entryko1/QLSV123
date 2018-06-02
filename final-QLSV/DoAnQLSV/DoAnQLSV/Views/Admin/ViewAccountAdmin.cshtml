@@ -1,0 +1,70 @@
+﻿@using DoAnQLSV.Models
+@using PagedList.Mvc
+@model PagedList.IPagedList<ADMIN>
+
+@{
+    ViewBag.Title = "ViewAccountAdmin";
+    Layout = "~/Views/Shared/_LayoutAdminITU.cshtml";
+}
+
+<h2>Danh Sách Các Tài Khoản Giáo Viên</h2>
+<br />
+<p>
+    @using (Html.BeginForm())
+    {
+    <p>
+        Tên Đăng Nhập:@Html.TextBox("timkiem")
+
+        <input type="submit" value="Tìm kiếm" placeholder="Nhập Tên Bạn Cần Tìm" style="background-color:lightgreen;padding-left:20px"/>
+
+    </p>
+    }
+
+    </p>
+<table class="table">
+    <tr>
+        <th>
+            Tên Hiển Thị
+        </th>
+        <th>
+            Tên đăng nhập
+        </th>
+        <th>
+            Mật Khẩu
+        </th>
+        <th>
+            Role
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Username)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Password)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Role)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "EditTeacher", new { username = item.Username   }) |  
+            @Html.ActionLink("Delete", "DeleteTeacher", new { username = item.Username })
+        </td>
+    </tr>
+}
+
+</table>
+Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)/@Model.PageCount;
+<div class="MenuTrang">
+    @Html.PagedListPager(Model, page => Url.Action("ViewPointStudent", new { page = page }))
+</div>
+<style>
+    .MenuTrang li {
+        display: inline;
+    }
+</style>

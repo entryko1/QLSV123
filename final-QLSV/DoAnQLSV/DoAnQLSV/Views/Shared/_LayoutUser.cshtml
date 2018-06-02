@@ -87,8 +87,8 @@
                         </div>
                         <div class="dropdown">
                             <button class="dropbtn btn-danger"  style="margin-left: 250px; background-color:red">Hello: @ViewBag.Taikhoan</button>
-                            <div class="dropdown-content" style="margin-left: 340px; background-color: #bf3c3c59; ">
-                                <li style="color: #bf3c3c59;"><a href="@Url.Action("EditPassStudent", "QLSV")" onclick="fun()" class="fa fa-cog" style="color:white">Đổi mật khẩu</a></li>
+                            <div class="dropdown-content" style="margin-left: 340px; background-color: #bf3c3c59 ">
+                                <li style="color: #bf3c3c59;"><a href="@Url.Action("EditPassStudent", "LoginUser", new { tendangnhap = ViewBag.Tendangnhap })" onclick="fun()" class="fa fa-cog" style="color:white">Đổi mật khẩu</a></li>
                                 <li style="color: #bf3c3c59;"><a href="@Url.Action("Index", "QLSV")" onclick="fun()" class="fa fa-sign-out" style="color:white">Đăng xuất</a></li>
                             </div>
                         </div>

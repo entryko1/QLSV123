@@ -1,0 +1,81 @@
+﻿@model DoAnQLSV.Models.TAIKHOAN
+
+@{
+    ViewBag.Title = "EditPassStudent";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+<style type="text/css">
+    table {
+        border: 5px solid #2caae6;
+        background-color: whitesmoke;
+    }
+
+    td {
+        padding: 15px;
+        text-align: left;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        font-size: 20px;
+        font-style: italic;
+        font-weight: bold;
+        padding-left: 40px;
+    }
+
+    p {
+        font-size: 15px;
+        padding-top: 5px;
+        color: red;
+        font-weight: 400;
+    }
+</style>
+<h2 align="center" style="font-family: cursive ; color: darkorange">Đổi Mật Khẩu</h2>
+
+<center>
+    
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @ViewBag.Error
+        @ViewBag.Error1
+        <table>
+            
+            
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.TenDN)
+
+
+            <tr>
+                <td>Nhập lại mật khẩu cũ:</td>
+                <td>
+                    <input class="form-control text-box single-line" id="OldPassword" name="OldPassword" type="password" placeholder="Nhập mật khẩu cũ" style="width:250px;height:25px"/>
+                    
+                </td>
+                
+            </tr>
+            <tr>
+                <td>Mật Khẩu Mới:</td>
+                <td>
+                    <input class="form-control text-box single-line" id="Password" name="Password" type="password" placeholder="Nhập mật khẩu mới" style="width:250px;height:25px" />
+                </td>
+            </tr>
+            <tr>
+                <td>Nhập lại mật khẩu:</td>
+                <td>
+                    <input class="form-control text-box single-line" id="RePassword" name="RePassword" type="password" placeholder="Nhập lại mật khẩu mới" style="width:250px;height:25px"/>
+                </td>
+                
+            </tr>
+
+            <tr>
+                <td>
+                    <div style="display:block;padding-left:70px" >
+                        @Html.ActionLink("Trở về", "_LayoutUser")
+                    </div>
+                </td>
+                <td>
+                    <input type="submit" value="Save" style="width:70px;height:30px" />
+                </td>
+                
+            </tr>
+        </table>
+    }
+</center>

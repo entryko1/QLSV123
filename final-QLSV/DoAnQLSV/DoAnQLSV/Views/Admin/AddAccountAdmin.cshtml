@@ -1,0 +1,62 @@
+﻿@model DoAnQLSV.Models.ADMIN
+
+@{
+    ViewBag.Title = "AddAccountAdmin";
+    Layout = "~/Views/Shared/_LayoutAdminITU.cshtml";
+}
+
+<h2>AddAccountAdmin</h2>
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>ADMIN</h4>
+        <p>@ViewBag.Error1</p>
+        <p>@ViewBag.Error2</p>
+        <p>@ViewBag.Error3</p>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <label class="control-label col-md-2">User Name</label>
+            <div class="col-md-10">
+                <input class="form-control text-box single-line" id="username" name="Username" type="text" placeholder="Nhập tên đăng nhập" />
+                
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-2">Mật Khẩu</label>
+            <div class="col-md-10">
+                <input class="form-control text-box single-line" id="password" name="Password" type="password" placeholder="Nhập mật khẩu" />
+                
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-2">Tên Hiển thị</label>
+            <div class="col-md-10">
+                <input class="form-control text-box single-line" id="name" name="Name" type="text" placeholder="Nhập tên muốn hiển thị" />
+                
+            </div>
+        </div>
+        
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Role</label>
+            <div class="col-md-10">
+                <input class="form-control text-box single-line" id="role" name="Role" type="text" value="2" readonly />
+                
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Lưu" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

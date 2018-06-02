@@ -17,7 +17,7 @@ namespace DoAnQLSV.Controllers
 
             //TinTuc
             BAIVIET bv = data.BAIVIETs.FirstOrDefault(n => n.Id == 3);
-            var tintuc = from t in data.BAIVIETs where t.Id  == 3  select t;
+            var tintuc = from t in data.BAIVIETs where t.Id == 3 select t;
             ViewBag.TieuDe = bv.TieuDe;
             ViewBag.TomTat = bv.TomTat;
             ViewBag.IdBv = bv.IdBV;
@@ -45,14 +45,14 @@ namespace DoAnQLSV.Controllers
             //Hotroviechoc
             BAIVIET bv4 = data.BAIVIETs.FirstOrDefault(n => n.Id == 6);
             var tintuc4 = (from t in data.BAIVIETs where t.Id == 6 select t).Take(7);
-           
+
             ViewBag.TieuDe4 = bv4.TieuDe;
             ViewBag.TomTat4 = bv4.TomTat;
             ViewBag.IdB4v = bv4.IdBV;
 
             ViewBag.tieude4 = tintuc4.Select(n => n.TieuDe);
-            ViewBag.Id4 = tintuc4.Select(n =>n.IdBV);
-            
+            ViewBag.Id4 = tintuc4.Select(n => n.IdBV);
+
             return View(data.BAIVIETs.ToList().OrderBy(n => n.NgayViet));
         }
 

@@ -700,7 +700,7 @@ namespace DoAnQLSV.Controllers
 
         [HttpGet]
 
-        public ActionResult EditPassWordAdmin(string username)
+        public ActionResult EditPassAdStudent(string username)
         {
             string un = username;
             ADMIN tk = (ADMIN)Session["TaikhoanSV"];
@@ -726,7 +726,7 @@ namespace DoAnQLSV.Controllers
         }
         [HttpPost]
         [ValidateInput(false)]
-        public ActionResult EditPassWordAdmin(string username, FormCollection collection)
+        public ActionResult EditPassAdStudent(string username, FormCollection collection)
         {
             string un1 = username;
             ADMIN tk = (ADMIN)Session["TaikhoanSV"];
@@ -758,14 +758,14 @@ namespace DoAnQLSV.Controllers
                 if (oldpw != pw.Password)
                 {
                     ViewBag.Erorr1 = "Mật khẩu sai!!!";
-                    return View("EditPassWordAdmin");
+                    return View("EditPassAdStudent");
                 }
                 else
                 {
                     if (repass != pass)
                     {
                         ViewBag.Error = "Mật khẩu không khớp";
-                        return View("EditPassWordAdmin");
+                        return View("EditPassAdStudent");
 
                     }
                     else
@@ -784,7 +784,323 @@ namespace DoAnQLSV.Controllers
             //return RedirectToAction("LoginAdminStudent");
 
         }
+        [HttpGet]
+
+        public ActionResult EditPassAdITU(string username)
+        {
+            string un = username;
+            ADMIN tk = (ADMIN)Session["TaikhoanSV"];
+            if (tk == null || String.IsNullOrEmpty(tk.ToString()))
+            {
+                return RedirectToAction("LoginAdminStudent");
+            }
+            else
+            {
+                ViewBag.Taikhoan = tk.Name;
+                ViewBag.UserName = tk.Username;
+                var pw = data.ADMINs.First(p => p.Username.Contains(username));
+                if (pw == null)
+                {
+                    Response.StatusCode = 404;
+                    return null;
+                }
+
+                return View(pw);
+            }
 
 
+        }
+        [HttpPost]
+        [ValidateInput(false)]
+        public ActionResult EditPassAdITU(string username, FormCollection collection)
+        {
+            string un1 = username;
+            ADMIN tk = (ADMIN)Session["TaikhoanSV"];
+            if (tk == null || String.IsNullOrEmpty(tk.ToString()))
+            {
+                return RedirectToAction("LoginAdminStudent");
+            }
+            else
+            {
+                ViewBag.Taikhoan = tk.Name;
+                ViewBag.UserName = tk.Username;
+                
+                var pw = data.ADMINs.First(p => p.Username.Contains(username));
+                string oldpw = collection["OldPassword"];
+                string pass = collection["Password"];
+                string repass = collection["RePassword"];
+                string un = collection["Username"];
+                string name = collection["Name"];
+
+                if (oldpw != pw.Password)
+                {
+                    ViewBag.Erorr1 = "Mật khẩu không đúng!!!";
+                    return View("EditPassAdITU");
+                }
+                else
+                {
+                    if (repass != pass)
+                    {
+                        ViewBag.Error = "Mật khẩu nhập lại không khớp";
+                        return View("EditPassAdITU");
+
+                    }
+                    else
+                    {
+                        pw.Username = un;
+                        pw.Password = pass;
+                        pw.Name = name;
+                        pw.Role = pw.Role;
+                        UpdateModel(pw);
+                        data.SubmitChanges();
+                        return RedirectToAction("LoginAdminStudent");
+                    }
+                }
+            }
+
+            //return RedirectToAction("LoginAdminStudent");
+
+        }
+        [HttpGet]
+        public ActionResult AddAccountAdmin()
+        {
+            ADMIN tk = (ADMIN)Session["TaikhoanSV"];
+            if (tk == null || String.IsNullOrEmpty(tk.ToString()))
+            {
+                return RedirectToAction("LoginAdminStudent");
+            }
+            else
+            {
+                ViewBag.Taikhoan = tk.Name;
+                ViewBag.UserName = tk.Username;
+                ViewBag.Password = tk.Password;
+                
+                return View();
+            }
+        }
+        [HttpPost]
+        [ValidateInput(false)]
+        public ActionResult AddAccountAdmin(ADMIN ad, FormCollection collection)
+        {
+            ADMIN tk = (ADMIN)Session["TaikhoanSV"];
+            if (tk == null || String.IsNullOrEmpty(tk.ToString()))
+            {
+                return RedirectToAction("LoginAdminStudent");
+            }
+            else
+            {
+                ViewBag.Taikhoan = tk.Name;
+                ViewBag.UserName = tk.Username;
+                ViewBag.Password = tk.Password;
+                
+                string pass = collection["Password"];
+                string username = collection["Username"];
+                string  name= collection["Name"];
+                string role = collection["Role"];
+                if (pass == null)
+                {
+                    ViewBag.Error1 = "Vui lòng nhập mật khẩu";
+                    return RedirectToAction("AddAccountAdmin");
+                }
+                else
+                {
+                    if (username == null)
+                    {
+                        ViewBag.Error2 = "Vui lòng nhập tên đăng nhập";
+                        return RedirectToAction("AddAccountAdmin");
+                    }
+                    else
+                    {
+                        if (name == null)
+                        {
+                            ViewBag.Error3 = "Vui lòng nhập tên hiển thị cho tài khoản";
+                            return RedirectToAction("AddAccountAdmin");
+                        }
+                        else
+                        {
+                            ad.Username = username;
+                            ad.Password = pass;
+                            ad.Name = name;
+                            ad.Role = int.Parse(role);
+                            data.ADMINs.InsertOnSubmit(ad);
+                            data.SubmitChanges();
+                            return RedirectToAction("AddAccountAdmin");
+                        }
+                    }
+                }             
+            }
+        }
+
+        public ActionResult ViewAccountAdmin( string timkiem, int? page)
+        {
+            ADMIN tk = (ADMIN)Session["TaikhoanSV"];
+            if (tk == null || String.IsNullOrEmpty(tk.ToString()))
+            {
+                return RedirectToAction("LoginAdminStudent");
+            }
+            else
+            {
+                ViewBag.UserName = tk.Username;
+                ViewBag.Taikhoan = tk.Name;
+                ViewBag. Pass= tk.Password;
+                ViewBag.Role = tk.Role;
+
+                int pageNumber = (page ?? 1);
+                int pageSize = 7;
+
+
+
+                var filter = from d in data.ADMINs select d;
+
+                if (!string.IsNullOrEmpty(timkiem))
+                {
+                    filter = filter.Where(a => a.Username.Contains(timkiem));
+                    return View(filter.ToPagedList(pageNumber, pageSize));
+                }
+
+                return View(data.ADMINs.Where(b => b.Role == 2).ToList().ToPagedList(pageNumber, pageSize));
+            }
+        }
+        [HttpGet]
+
+        public ActionResult EditTeacher(string username)
+        { 
+            string un = username;  // cmm rồi đó
+            ADMIN tk = (ADMIN)Session["TaikhoanSV"];
+            if (tk == null || String.IsNullOrEmpty(tk.ToString()))
+            {
+                return RedirectToAction("ViewAccountAdmin");
+            }
+            else
+            {
+                //var gv = data.ADMINs.First(p => p.Role == 2);
+                ViewBag.Name = tk.Name;
+                ViewBag.Taikhoan = tk.Name;
+                ViewBag.UserName = tk.Username;
+                var pw = data.ADMINs.First(p => p.Username.Contains(username));
+                if (pw == null)
+                {
+                    Response.StatusCode = 404;
+                    return null;
+                }
+
+                return View(pw);
+            }
+
+
+        }
+        [HttpPost]
+        [ValidateInput(false)]
+        public ActionResult EditTeacher(string username, FormCollection collection)
+        {
+            string un1 = username;
+            ADMIN tk = (ADMIN)Session["TaikhoanSV"];
+            if (tk == null || String.IsNullOrEmpty(tk.ToString()))
+            {
+                return RedirectToAction("ViewAccountAdmin");
+            }
+            else
+            {
+                
+                ViewBag.Name = tk.Name;
+                ViewBag.Taikhoan = tk.Name;
+                ViewBag.UserName = tk.Username;
+                
+                var pw = data.ADMINs.First(p => p.Username.Contains(username));
+                string oldpw = collection["OldPassword"];
+                string pass = collection["Password"];
+                string repass = collection["RePassword"];
+                string un = collection["Username"];
+                string name = collection["Name"];
+
+                if (oldpw != pw.Password)
+                {
+                    ViewBag.Erorr1 = "Mật khẩu sai!!!";
+                    return View("EditTeacher");
+                }
+                else
+                {
+                    if (repass != pass)
+                    {
+                        ViewBag.Error = "Mật khẩu không khớp";
+                        return View("EditTeacher");
+
+                    }
+                    else
+                    {
+                        pw.Username = un;
+                        pw.Password = pass;
+                        pw.Name = name;
+                        pw.Role = pw.Role;
+                        UpdateModel(pw);
+                        data.SubmitChanges();
+                        return RedirectToAction("ViewAccountAdmin");
+                    }
+                }
+            }
+
+        }
+        [HttpGet]
+        [ValidateInput(false)]
+        public ActionResult DeleteTeacher(string username)
+        {
+            ADMIN tk = (ADMIN)Session["TaikhoanSV"];
+            if (tk == null || String.IsNullOrEmpty(tk.ToString()))
+            {
+                return RedirectToAction("LoginAdminStudent");
+            }
+            else
+            {
+                ViewBag.Name = tk.Name;
+                ViewBag.Taikhoan = tk.Name;
+                ViewBag.UserName = tk.Username;
+                var bv = data.ADMINs.First(d => d.Username == username);
+
+                if (bv == null)
+                {
+                    Response.StatusCode = 404;
+                    return null;
+                }
+
+                return View(bv);
+            }
+
+        }
+
+
+
+        [HttpPost, ActionName("DeleteTeacher")]
+        public ActionResult ComfirmDeleteTeacher(string username)
+        {
+            ADMIN tk = (ADMIN)Session["TaikhoanSV"];
+            if (tk == null || String.IsNullOrEmpty(tk.ToString()))
+            {
+                return RedirectToAction("LoginAdminStudent");
+            }
+            else
+            {
+                ViewBag.Name = tk.Name;
+                ViewBag.Taikhoan = tk.Name;
+                ViewBag.UserName = tk.Username;
+
+
+
+                var bv = data.ADMINs.First(d => d.Username == username);
+
+                if (bv == null)
+                {
+                    Response.StatusCode = 404;
+                    return null;
+                }
+                else
+                {
+                    data.ADMINs.DeleteOnSubmit(bv);
+                    data.SubmitChanges();
+                    return RedirectToAction("ViewAccountAdmin");
+                }
+            }
+
+
+        }
     }
 }

@@ -28,9 +28,9 @@ namespace DoAnQLSV.Controllers
         public ActionResult Login(FormCollection collection)
         {
             var tendn = collection["Username"];
-          
+
             var matkhau = collection["Password"];
-           
+
             if (String.IsNullOrEmpty(tendn))
             {
                 ViewData["Loi1"] = "Bạn chưa gõ tên đăng nhập";
@@ -42,12 +42,12 @@ namespace DoAnQLSV.Controllers
             else
             {
                 TAIKHOAN tk = data.TAIKHOANs.SingleOrDefault(n => n.TenDN == tendn && n.MatKhau == matkhau);
-              
+
                 if (tk != null)
                 {
                     Session["TaikhoanSV"] = tk;
-                   
-                    return RedirectToAction("IndexLogin",  new {mssv = tk.SINHVIEN.MaSV});
+
+                    return RedirectToAction("IndexLogin", new { mssv = tk.SINHVIEN.MaSV });
                 }
                 else
                 {
@@ -60,23 +60,26 @@ namespace DoAnQLSV.Controllers
 
         public ActionResult IndexLogin(string mssv)
         {
-        
+
             TAIKHOAN tk = data.TAIKHOANs.SingleOrDefault(n => n.TenDN == mssv);
             ViewBag.Taikhoan = tk.SINHVIEN.TenSV;
+            ViewBag.Tendangnhap = tk.TenDN;
+            ViewBag.Matkhau = tk.MatKhau;
             return View();
         }
 
-        
+
         public ActionResult Xemdiem()
         {
 
             TAIKHOAN tk = (TAIKHOAN)Session["TaikhoanSV"];
             var diem = from s in data.DIEMs where s.MaSV == tk.TenDN select s;
-     
 
-            
+            ViewBag.Tendangnhap = tk.TenDN;
+            ViewBag.Matkhau = tk.MatKhau;
+
             ViewBag.Taikhoan = tk.SINHVIEN.TenSV;
-          
+
             return View(diem);
         }
 
@@ -84,6 +87,8 @@ namespace DoAnQLSV.Controllers
         {
             TAIKHOAN tk = (TAIKHOAN)Session["TaikhoanSV"];
             ViewBag.Taikhoan = tk.SINHVIEN.TenSV;
+            ViewBag.Tendangnhap = tk.TenDN;
+            ViewBag.Matkhau = tk.MatKhau;
             int pageNumber = (page ?? 1);
             int pageSize = 4;
             return View(data.BAIVIETs.Where(b => b.Id.Equals(id)).ToList().OrderBy(n => n.NgayViet).ToPagedList(pageNumber, pageSize));
@@ -92,6 +97,8 @@ namespace DoAnQLSV.Controllers
         {
             TAIKHOAN tk = (TAIKHOAN)Session["TaikhoanSV"];
             ViewBag.Taikhoan = tk.SINHVIEN.TenSV;
+            ViewBag.Tendangnhap = tk.TenDN;
+            ViewBag.Matkhau = tk.MatKhau;
             int pageNumber = (page ?? 1);
             int pageSize = 4;
             return View(data.BAIVIETs.Where(b => b.Id.Equals(id)).ToList().OrderBy(n => n.NgayViet).ToPagedList(pageNumber, pageSize));
@@ -100,6 +107,8 @@ namespace DoAnQLSV.Controllers
         {
             TAIKHOAN tk = (TAIKHOAN)Session["TaikhoanSV"];
             ViewBag.Taikhoan = tk.SINHVIEN.TenSV;
+            ViewBag.Tendangnhap = tk.TenDN;
+            ViewBag.Matkhau = tk.MatKhau;
             return View();
         }
 
@@ -107,6 +116,8 @@ namespace DoAnQLSV.Controllers
         {
             TAIKHOAN tk = (TAIKHOAN)Session["TaikhoanSV"];
             ViewBag.Taikhoan = tk.SINHVIEN.TenSV;
+            ViewBag.Tendangnhap = tk.TenDN;
+            ViewBag.Matkhau = tk.MatKhau;
             var sv = from s in data.SINHVIENs where s.MaSV == tk.TenDN select s;
             return View(sv.Single());
         }
@@ -117,6 +128,8 @@ namespace DoAnQLSV.Controllers
         {
             TAIKHOAN tk = (TAIKHOAN)Session["TaikhoanSV"];
             ViewBag.Taikhoan = tk.SINHVIEN.TenSV;
+            ViewBag.Tendangnhap = tk.TenDN;
+            ViewBag.Matkhau = tk.MatKhau;
             BAIVIET bv = data.BAIVIETs.SingleOrDefault(n => n.IdBV == id);
             if (bv == null)
             {
@@ -132,7 +145,8 @@ namespace DoAnQLSV.Controllers
         //cap nhat thong tin nguoi dung
         public ActionResult CapNhatThongTinSV(string MaSV)
         {
-
+            TAIKHOAN tk = (TAIKHOAN)Session["TaikhoanSV"];
+            ViewBag.Taikhoan = tk.SINHVIEN.TenSV;
             //lấy đối tượng là mã sinh viên
             SINHVIEN sv = data.SINHVIENs.SingleOrDefault(n => n.MaSV == MaSV);
             if (sv == null)
@@ -147,6 +161,8 @@ namespace DoAnQLSV.Controllers
         [ValidateInput(false)]
         public ActionResult CapNhatThongTinSV(SINHVIEN sv)
         {
+            TAIKHOAN tk = (TAIKHOAN)Session["TaikhoanSV"];
+            ViewBag.Taikhoan = tk.SINHVIEN.TenSV;
             SINHVIEN sinhvien = data.SINHVIENs.SingleOrDefault(n => n.MaSV == sv.MaSV);
             sinhvien.GioiTinh = sv.GioiTinh;
             sinhvien.NgaySinh = sv.NgaySinh;
@@ -228,8 +244,7 @@ namespace DoAnQLSV.Controllers
             List<DIEM> lstKQTK = data.DIEMs.Where(n => n.MaSV.Contains(sTuKhoa)).ToList();
             //int pageNumber = (page ?? 1);
             //int pageSize = 3;
-
-
+            
             ViewBag.TuKhoa = sTuKhoa;
 
             foreach (Char c in sTuKhoa)
@@ -238,6 +253,7 @@ namespace DoAnQLSV.Controllers
                 {
                     var filter = from d in data.DIEMs select d;
                     filter = filter.Where(a => a.SINHVIEN.TenSV.Contains(sTuKhoa));
+
                     SINHVIEN sv = data.SINHVIENs.SingleOrDefault(s => s.TenSV.Contains(sTuKhoa));
                     ViewBag.TenSV = sv.TenSV;
                     ViewBag.Mssv = sv.MaSV;
@@ -247,7 +263,7 @@ namespace DoAnQLSV.Controllers
                     ViewBag.Lop = sv.LOP.TenLop;
                     ViewBag.Nganh = sv.ChuyenNganh;
                     ViewBag.Khoa = sv.KHOA.TenKhoa;
-
+                    ViewBag.Hedaotao = sv.LOP.HEDAOTAO.TenHDT;
                     ViewBag.Khoahoc = sv.KHOAHOC.TenKhoaHoc;
                     return View(filter/*.ToPagedList(pageNumber, pageSize)*/);
                 }
@@ -255,6 +271,7 @@ namespace DoAnQLSV.Controllers
                 {
                     var filter = from d in data.DIEMs select d;
                     filter = filter.Where(a => a.MaSV.Contains(sTuKhoa));
+
                     SINHVIEN sv = data.SINHVIENs.SingleOrDefault(s => s.MaSV.Contains(sTuKhoa));
                     ViewBag.TenSV = sv.TenSV;
                     ViewBag.Mssv = sv.MaSV;
@@ -264,7 +281,7 @@ namespace DoAnQLSV.Controllers
                     ViewBag.Lop = sv.LOP.TenLop;
                     ViewBag.Nganh = sv.ChuyenNganh;
                     ViewBag.Khoa = sv.KHOA.TenKhoa;
-
+                    ViewBag.Hedaotao = sv.LOP.HEDAOTAO.TenHDT;
                     ViewBag.Khoahoc = sv.KHOAHOC.TenKhoaHoc;
                     return View(filter/*.ToPagedList(pageNumber, pageSize)*/);
                 }
@@ -274,8 +291,89 @@ namespace DoAnQLSV.Controllers
             return View(lstKQTK/*.ToPagedList(pageNumber, pageSize)*/);
 
         }
+        //thay đổi mật khẩu cho sinh viên
+        [HttpGet]
+
+        public ActionResult EditPassStudent(string tendangnhap)
+        {
+            string user = tendangnhap;
+            TAIKHOAN tk = (TAIKHOAN)Session["TaikhoanSV"];
+            ViewBag.Taikhoan = tk.SINHVIEN.TenSV;
+            if (tk == null || String.IsNullOrEmpty(tk.ToString()))
+            {
+                return RedirectToAction("Login");
+            }
+            else
+            {
+                ViewBag.Tendangnhap = tk.TenDN;
+                ViewBag.Matkhau = tk.MatKhau;
+                
+                var pw = data.TAIKHOANs.First(p => p.TenDN.Contains(tk.TenDN));
+                if (pw == null)
+                {
+                    Response.StatusCode = 404;
+                    return null;
+                }
+
+                return View();
+            }
+        }
+
+        [HttpPost]
+        [ValidateInput(false)]
+        public ActionResult EditPassStudent(string tendangnhap, FormCollection collection)
+        {
+            string usersv = tendangnhap;
+            TAIKHOAN tk = (TAIKHOAN)Session["TaikhoanSV"];
+            if (tk == null || String.IsNullOrEmpty(tk.ToString()))
+            {
+                return RedirectToAction("Login");
+            }
+            else
+            {
+                ViewBag.Tendangnhap = tk.TenDN;
+                ViewBag.Matkhau = tk.MatKhau;
+               
+
+                var pw = data.TAIKHOANs.First(p => p.TenDN.Contains(usersv));
+                string oldpw = collection["OldPassword"];
+                string pass = collection["Password"];
+                string repass = collection["RePassword"];
 
 
+                if (oldpw != pw.MatKhau)
+                {
+                    ViewBag.Erorr1 = "Mật khẩu không đúng!!!";
+                    return View("EditPassStudent");
+                }
+                else
+                {
+                    if (repass != pass)
+                    {
+                        ViewBag.Error = "Mật khẩu nhập lại không chính xác";
+                        return View("EditPassStudent");
 
+                    }
+                    else
+                    {
+                        pw.TenDN = usersv;
+                        pw.MatKhau = pass;
+
+
+                        UpdateModel(pw);
+                        data.SubmitChanges();
+                        return RedirectToAction("Login");
+                    }
+                }
+            }
+
+
+        }
     }
 }
+
+
+
+
+
+    
